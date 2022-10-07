@@ -1,0 +1,1 @@
+export const DEFAULT_EXAMPLE = "DEFAULT_EXAMPLE";

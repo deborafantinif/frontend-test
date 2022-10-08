@@ -1,3 +1,5 @@
 export const REQUEST_FILMS = "REQUEST_FILMS";
 export const SAVE_FILMS = "SAVE_FILMS";
 export const FAILED_REQUEST = "FAILED_REQUEST";
+export const REQUEST_PEOPLE = "REQUEST_PEOPLE";
+export const SAVE_PEOPLE = "SAVE_PEOPLE";

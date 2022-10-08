@@ -1,1 +1,3 @@
-export const DEFAULT_EXAMPLE = "DEFAULT_EXAMPLE";
+export const REQUEST_FILMS = "REQUEST_FILMS";
+export const SAVE_FILMS = "SAVE_FILMS";
+export const FAILED_REQUEST = "FAILED_REQUEST";

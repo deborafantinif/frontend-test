@@ -1,4 +1,4 @@
-export type ResponseAction = {
+export type IResponseAction = {
   type: string,
   payload: string
 }

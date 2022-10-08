@@ -1,5 +1,7 @@
 export interface IHeaderHomeProps {
   endpoint: string,
+  isMoreFiltersSelected: boolean,
+  setIsMoreFiltersSelected(isSelected: boolean): void,
   allFilms: IFilm[],
   getFilmsByTitle(filteredFilms: IFilm[]): void,
   allPeople: IPerson[],
@@ -10,6 +12,10 @@ export interface IHeaderHomeProps {
   getSpeciesByName(filteredSpecies: ISpecie[]): void,
   allVehicles: IVehicle[],
   getVehiclesByName(filteredVehicles: IVehicle[]): void,
+}
+
+export interface IFilterProps {
+  setIsMoreFiltersSelected(isSelected: boolean): void,
 }
 
 interface IDefaultProps {

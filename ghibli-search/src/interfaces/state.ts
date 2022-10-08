@@ -6,6 +6,7 @@ export interface IRootState {
     allFilms: IFilm[],
     loading: boolean,
     error: string,
+    isMoreFiltersSelected: boolean,
   },
   peopleReducer: {
     people: IPerson[],

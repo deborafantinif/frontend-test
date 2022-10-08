@@ -3,16 +3,42 @@ import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { IFilm, IHeaderHomeProps, ILocation, IPerson, ISpecie, IVehicle } from "../interfaces/propsComponents";
+import {
+  IFilm,
+  IHeaderHomeProps,
+  ILocation,
+  IPerson,
+  ISpecie,
+  IVehicle,
+} from "../interfaces/propsComponents";
 import { IRootState } from "../interfaces/state";
-import { getFilmsByTitle } from "../redux/actions/filmsAction";
+import { getFilmsByTitle, handleMoreFilters } from "../redux/actions/filmsAction";
 import { getLocationByName } from "../redux/actions/locationsAction";
 import { getPeopleByName } from "../redux/actions/peopleAction";
 import { getSpeciesByName } from "../redux/actions/speciesAction";
 import { getVehiclesByName } from "../redux/actions/vehiclesAction";
+import FilmsFilter from "./FilmsFilter";
+import LocationsFilter from "./LocationsFilter";
 import { Menu } from "./Menu";
+import PeopleFilter from "./PeopleFilter";
+import SpeciesFilter from "./SpeciesFilter";
+import VehiclesFilter from "./VehiclesFilter";
 
-function HeaderHome({ allFilms, getFilmsByTitle, endpoint, allLocations, allPeople, allSpecies, allVehicles, getLocationsByName, getPeopleByName, getSpeciesByName, getVehiclesByName }: IHeaderHomeProps) {
+function HeaderHome({
+  allFilms,
+  getFilmsByTitle,
+  endpoint,
+  allLocations,
+  allPeople,
+  allSpecies,
+  allVehicles,
+  getLocationsByName,
+  getPeopleByName,
+  getSpeciesByName,
+  getVehiclesByName,
+  setIsMoreFiltersSelected,
+  isMoreFiltersSelected
+}: IHeaderHomeProps) {
   function searchFilmsTitle(title: string) {
     const filteredFilms = allFilms.filter((film) =>
       film.title.toLowerCase().includes(title.toLowerCase())
@@ -59,6 +85,22 @@ function HeaderHome({ allFilms, getFilmsByTitle, endpoint, allLocations, allPeop
         return null;
     }
   }
+  function handleFilters() {
+    switch (endpoint) {
+      case "films":
+        return <FilmsFilter/>;
+      case "people":
+        return <PeopleFilter/>;
+      case "locations":
+        return <LocationsFilter/>;
+      case "species":
+        return <SpeciesFilter/>;
+      case "vehicles":
+        return <VehiclesFilter/>;
+      default:
+        return null;
+    }
+  }
   return (
     <header>
       <Menu />
@@ -66,12 +108,13 @@ function HeaderHome({ allFilms, getFilmsByTitle, endpoint, allLocations, allPeop
       <input
         type="text"
         name="name"
-        placeholder="Search by movie name..."
+        placeholder={`Search by ${endpoint} name...`}
         onChange={(event) => handleInput(event)}
       />
-      <button type="button">
+      <button type="button" onClick={() => setIsMoreFiltersSelected(true)}>
         <Plus size={25} /> FILTERS
       </button>
+      { isMoreFiltersSelected ? handleFilters() : null }
     </header>
   );
 }
@@ -82,6 +125,7 @@ const mapState = (state: IRootState) => ({
   allLocations: state.locationsReducer.allLocations,
   allSpecies: state.speciesReducer.allSpecies,
   allVehicles: state.vehiclesReducer.allVehicles,
+  isMoreFiltersSelected: state.filmsReducer.isMoreFiltersSelected,
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
@@ -95,6 +139,8 @@ const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
     dispatch(getSpeciesByName(filteredSpecies)),
   getVehiclesByName: (filteredVehicles: IVehicle[]) =>
     dispatch(getVehiclesByName(filteredVehicles)),
+  setIsMoreFiltersSelected: (isSelected: boolean) =>
+    dispatch(handleMoreFilters(isSelected)),
 });
 
 export default connect(mapState, mapDispatch)(HeaderHome);

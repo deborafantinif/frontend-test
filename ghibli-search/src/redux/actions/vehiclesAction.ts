@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchVehicles } from "../../api/ghibliApi";
-import { FAILED_REQUEST, REQUEST_VEHICLES, SAVE_VEHICLES } from "./actionTypes";
+import { IVehicle } from "../../interfaces/propsComponents";
+import { FAILED_REQUEST, GET_VEHICLES_BY_NAME, REQUEST_VEHICLES, SAVE_VEHICLES } from "./actionTypes";
 
 const requestVehicles = () => ({
   type: REQUEST_VEHICLES,
@@ -28,3 +29,8 @@ export const getVehicles = () => async (dispatch: Dispatch) => {
       dispatch(failedRequest(error.message));
   }
 }
+
+export const getVehiclesByName = (filteredVehicles: IVehicle[]) => ({
+  type: GET_VEHICLES_BY_NAME,
+  payload: filteredVehicles,
+});

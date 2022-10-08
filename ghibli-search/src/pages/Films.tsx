@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CardFilm } from '../components/CardFilm';
-import { HeaderHome } from '../components/HeaderHome';
+import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { IFilmsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
@@ -17,7 +17,7 @@ function Films({ fetchFilms, films, loading, error }: IFilmsProps) {
   return (
     <div>
       <p>Films</p>
-      <HeaderHome/>
+      <HeaderHome endpoint={"films"}/>
       { (loading) ?
         <Loading/> :
         films.map((film) => <CardFilm key={film.id} film={film} /> ) }

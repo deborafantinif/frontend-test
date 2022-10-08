@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchSpecies } from "../../api/ghibliApi";
-import { FAILED_REQUEST, REQUEST_SPECIES, SAVE_SPECIES } from "./actionTypes";
+import { ISpecie } from "../../interfaces/propsComponents";
+import { FAILED_REQUEST, GET_SPECIES_BY_NAME, REQUEST_SPECIES, SAVE_SPECIES } from "./actionTypes";
 
 const requestSpecies = () => ({
   type: REQUEST_SPECIES,
@@ -28,3 +29,8 @@ export const getSpecies = () => async (dispatch: Dispatch) => {
       dispatch(failedRequest(error.message));
   }
 }
+
+export const getSpeciesByName = (filteredSpecies: ISpecie[]) => ({
+  type: GET_SPECIES_BY_NAME,
+  payload: filteredSpecies,
+});

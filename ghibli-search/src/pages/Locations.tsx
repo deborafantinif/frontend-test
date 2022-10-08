@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CardLocation } from '../components/CardLocation';
-import { HeaderHome } from '../components/HeaderHome';
+import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { ILocationsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
@@ -17,7 +17,7 @@ function Locations({ fetchLocations, locations, loading, error }: ILocationsProp
   return (
     <div>
       <p>Locations</p>
-      <HeaderHome/>
+      <HeaderHome endpoint='locations'/>
       { (loading) ?
         <Loading/> :
         locations.map((location) => <CardLocation key={location.id} location={location} /> ) }

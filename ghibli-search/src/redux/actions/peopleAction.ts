@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchPeople } from "../../api/ghibliApi";
-import { FAILED_REQUEST, REQUEST_PEOPLE, SAVE_PEOPLE } from "./actionTypes";
+import { IPerson } from "../../interfaces/propsComponents";
+import { FAILED_REQUEST, GET_PEOPLE_BY_NAME, REQUEST_PEOPLE, SAVE_PEOPLE } from "./actionTypes";
 
 const requestPeople = () => ({
   type: REQUEST_PEOPLE,
@@ -28,3 +29,8 @@ export const getPeople = () => async (dispatch: Dispatch) => {
       dispatch(failedRequest(error.message));
   }
 }
+
+export const getPeopleByName = (filteredPeople: IPerson[]) => ({
+  type: GET_PEOPLE_BY_NAME,
+  payload: filteredPeople,
+});

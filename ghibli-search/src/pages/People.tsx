@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CardPerson } from '../components/CardPerson';
-import { HeaderHome } from '../components/HeaderHome';
+import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { IPeopleProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
@@ -17,7 +17,7 @@ function People({ fetchPeople, people, loading, error }: IPeopleProps) {
   return (
     <div>
       <p>People</p>
-      <HeaderHome/>
+      <HeaderHome endpoint='people'/>
       { (loading) ?
         <Loading/> :
         people.map((person) => <CardPerson key={person.id} person={person} /> ) }

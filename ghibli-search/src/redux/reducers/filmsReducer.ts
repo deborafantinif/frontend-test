@@ -1,8 +1,9 @@
 import { IResponseAction } from '../../interfaces/actions';
-import { FAILED_REQUEST, REQUEST_FILMS, SAVE_FILMS } from '../actions/actionTypes';
+import { FAILED_REQUEST, GET_FILMS_BY_TITLE, REQUEST_FILMS, SAVE_FILMS } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   films: [],
+  allFilms: [],
   loading: false,
   error: '',
 };
@@ -18,6 +19,7 @@ const filmsReducer = (state = INITIAL_STATE, action: IResponseAction) => {
     return {
       ...state,
       films: action.payload,
+      allFilms: action.payload,
       loading: false,
     }
   case FAILED_REQUEST:
@@ -25,6 +27,11 @@ const filmsReducer = (state = INITIAL_STATE, action: IResponseAction) => {
       ...state,
       loading: true,
       error: action.payload,
+    }
+  case GET_FILMS_BY_TITLE:
+    return {
+      ...state,
+      films: action.payload,
     }
   default:
     return state;

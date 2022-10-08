@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchLocations } from "../../api/ghibliApi";
-import { FAILED_REQUEST, REQUEST_LOCATIONS, SAVE_LOCATIONS } from "./actionTypes";
+import { ILocation } from "../../interfaces/propsComponents";
+import { FAILED_REQUEST, GET_LOCATIONS_BY_NAME, REQUEST_LOCATIONS, SAVE_LOCATIONS } from "./actionTypes";
 
 const requestLocations = () => ({
   type: REQUEST_LOCATIONS,
@@ -28,3 +29,8 @@ export const getLocations = () => async (dispatch: Dispatch) => {
       dispatch(failedRequest(error.message));
   }
 }
+
+export const getLocationByName = (filteredLocations: ILocation[]) => ({
+  type: GET_LOCATIONS_BY_NAME,
+  payload: filteredLocations,
+});

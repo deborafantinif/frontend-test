@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CardSpecie } from '../components/CardSpecie';
-import { HeaderHome } from '../components/HeaderHome';
+import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { ISpeciesProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
@@ -17,7 +17,7 @@ function Species({ fetchSpecies, species, loading, error }: ISpeciesProps) {
   return (
     <div>
       <p>People</p>
-      <HeaderHome/>
+      <HeaderHome endpoint='species'/>
       { (loading) ?
         <Loading/> :
         species.map((specie) => <CardSpecie key={specie.id} specie={specie} /> ) }

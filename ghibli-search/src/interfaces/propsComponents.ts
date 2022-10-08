@@ -1,3 +1,17 @@
+export interface IHeaderHomeProps {
+  endpoint: string,
+  allFilms: IFilm[],
+  getFilmsByTitle(filteredFilms: IFilm[]): void,
+  allPeople: IPerson[],
+  getPeopleByName(filteredPeople: IPerson[]): void,
+  allLocations: ILocation[],
+  getLocationsByName(filteredLocations: ILocation[]): void,
+  allSpecies: ISpecie[],
+  getSpeciesByName(filteredSpecies: ISpecie[]): void,
+  allVehicles: IVehicle[],
+  getVehiclesByName(filteredVehicles: IVehicle[]): void,
+}
+
 interface IDefaultProps {
   loading: boolean,
   error: string,

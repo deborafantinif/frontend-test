@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CardVehicle } from '../components/CardVehicles';
-import { HeaderHome } from '../components/HeaderHome';
+import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { IVehiclesProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
@@ -17,7 +17,7 @@ function Vehicles({ fetchVehicles, vehicles, loading, error }: IVehiclesProps) {
   return (
     <div>
       <p>Vehicles</p>
-      <HeaderHome/>
+      <HeaderHome endpoint='vehicles'/>
       { (loading) ?
         <Loading/> :
         vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} /> ) }

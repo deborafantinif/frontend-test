@@ -1,4 +1,4 @@
-import { IFilm, ILocation, IPerson, ISpecie } from "./propsComponents";
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from "./propsComponents";
 
 export interface IRootState {
   filmsReducer: {
@@ -18,6 +18,11 @@ export interface IRootState {
   },
   speciesReducer: {
     species: ISpecie[],
+    loading: boolean,
+    error: string,
+  },
+  vehiclesReducer: {
+    vehicles: IVehicle[],
     loading: boolean,
     error: string,
   }

@@ -4,6 +4,7 @@ import { HeaderDetails } from '../components/HeaderDetails';
 import { LocationsDetails } from '../components/LocationsDetails';
 import { PeopleDetails } from '../components/PeopleDetails';
 import { SpeciesDetails } from '../components/SpeciesDetails';
+import { VehiclesDetails } from '../components/VehiclesDetails';
 import { IDetails } from '../interfaces/propsComponents';
 
 export function Details({endpoint}: IDetails) {
@@ -17,6 +18,8 @@ export function Details({endpoint}: IDetails) {
         return <LocationsDetails/>
       case 'specie':
         return <SpeciesDetails/>
+      case 'vehicle':
+        return <VehiclesDetails/>
       default:
         return <p>None</p>
     }

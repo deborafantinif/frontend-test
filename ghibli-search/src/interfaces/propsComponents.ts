@@ -89,6 +89,26 @@ export interface ISpecieProps {
   specie: ISpecie,
 }
 
+export interface IVehicle {
+  id: string,
+  name: string,
+  description: string,
+  vehicle_class: string,
+  length: string,
+  pilot: string,
+  films: string[],
+  url: string,
+}
+
+export interface IVehiclesProps extends IDefaultProps {
+  vehicles: IVehicle[],
+  fetchVehicles(): void,
+}
+
+export interface IVehicleProps {
+  vehicle: IVehicle,
+}
+
 export interface IDetails {
   endpoint: string,
 }

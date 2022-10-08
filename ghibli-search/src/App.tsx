@@ -5,6 +5,7 @@ import Films from "./pages/Films";
 import Locations from "./pages/Locations";
 import People from "./pages/People";
 import Species from "./pages/Species";
+import Vehicles from "./pages/Vehicles";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/locations/:id" element={<Details endpoint="location"/>}/>
         <Route path="/species" element={<Species/>}/>
         <Route path="/species/:id" element={<Details endpoint="specie"/>}/>
+        <Route path="/vehicles" element={<Vehicles/>}/>
+        <Route path="/vehicles/:id" element={<Details endpoint="vehicle"/>}/>
       </Routes>
     </div>
   );

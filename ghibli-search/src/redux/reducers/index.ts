@@ -3,6 +3,7 @@ import filmsReducer from './filmsReducer';
 import peopleReducer from './peopleReducer';
 import locationsReducer from './locationsReducer';
 import speciesReducer from './speciesReducer';
+import vehiclesReducer from './vehiclesReducer';
 
 
 const rootReducer = combineReducers({ 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   peopleReducer,
   locationsReducer,
   speciesReducer,
+  vehiclesReducer,
 })
 
 export default rootReducer;

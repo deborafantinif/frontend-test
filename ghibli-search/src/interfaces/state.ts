@@ -10,5 +10,10 @@ export interface IRootState {
     people: [],
     loading: boolean,
     error: string,
+  },
+  locationsReducer: {
+    locations: [],
+    loading: boolean,
+    error: string,
   }
 }

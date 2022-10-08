@@ -1,3 +1,8 @@
+interface IDefaultProps {
+  loading: boolean,
+  error: string,
+}
+
 export interface IFilm {
   id: string,
   title: string,
@@ -14,10 +19,8 @@ export interface IFilm {
   url: string,
 }
 
-export interface IFilmsProps {
-  loading: boolean,
+export interface IFilmsProps extends IDefaultProps {
   films: IFilm[],
-  error: string,
   fetchFilms(): void,
 }
 
@@ -37,15 +40,33 @@ export interface IPerson {
   url: string,
 }
 
-export interface IPeopleProps {
-  loading: boolean,
+export interface IPeopleProps extends IDefaultProps {
   people: IPerson[],
-  error: string,
   fetchPeople(): void,
 }
 
 export interface IPersonProps {
   person: IPerson,
+}
+
+export interface ILocation {
+  id: string,
+  name: string,
+  climate: string,
+  terrain: string,
+  surface_water: string,
+  residents: string,
+  films: string[],
+  url: string,
+}
+
+export interface ILocationsProps extends IDefaultProps {
+  locations: ILocation[],
+  fetchLocations(): void,
+}
+
+export interface ILocationProps {
+  location: ILocation,
 }
 
 export interface IDetails {

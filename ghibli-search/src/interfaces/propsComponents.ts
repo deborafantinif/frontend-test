@@ -69,6 +69,26 @@ export interface ILocationProps {
   location: ILocation,
 }
 
+export interface ISpecie {
+  id: string,
+  name: string,
+  classification: string,
+  eye_color: string,
+  hair_color: string,
+  people: string[],
+  films: string[],
+  url: string,
+}
+
+export interface ISpeciesProps extends IDefaultProps {
+  species: ISpecie[],
+  fetchSpecies(): void,
+}
+
+export interface ISpecieProps {
+  specie: ISpecie,
+}
+
 export interface IDetails {
   endpoint: string,
 }

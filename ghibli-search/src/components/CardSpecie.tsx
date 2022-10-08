@@ -1,31 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IPersonProps } from '../interfaces/propsComponents';
+import { ISpecieProps } from '../interfaces/propsComponents';
 
-export function CardPeople({person}: IPersonProps) {
+export function CardSpecie({specie}: ISpecieProps) {
   const navigate = useNavigate();
   return (
     <section>
-      <h3>{person.name}</h3>
-      <span>{person.gender}</span>
+      <h3>{specie.name}</h3>
       <p>
-        <span>Idade:</span>
+        <span>Classification:</span>
         {" "}
-        {person.age}
+        {specie.classification}
       </p>
       <p>
         <span>Eye color:</span>
         {" "}
-        {person.eye_color}
+        {specie.eye_color}
       </p>
       <p>
         <span>Hair color:</span>
         {" "}
-        {person.hair_color}
+        {specie.hair_color}
       </p>
       <button
         type="button"
-        onClick={ () => navigate(`/people/${person.id}`) }
+        onClick={ () => navigate(`/species/${specie.id}`) }
       >
         READ MORE...
       </button>

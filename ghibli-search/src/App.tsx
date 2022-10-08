@@ -4,6 +4,7 @@ import { Details } from "./pages/Details";
 import Films from "./pages/Films";
 import Locations from "./pages/Locations";
 import People from "./pages/People";
+import Species from "./pages/Species";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/people/:id" element={<Details endpoint="person"/>}/>
         <Route path="/locations" element={<Locations/>}/>
         <Route path="/locations/:id" element={<Details endpoint="location"/>}/>
+        <Route path="/species" element={<Species/>}/>
+        <Route path="/species/:id" element={<Details endpoint="specie"/>}/>
       </Routes>
     </div>
   );

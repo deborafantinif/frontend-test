@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Default() {
+export function SpeciesDetails() {
   return (
     <div>
-      <p>Ghibli</p>
+      <p>SpeciesDetails</p>
     </div>
   )
 }

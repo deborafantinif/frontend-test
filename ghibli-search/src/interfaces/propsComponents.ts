@@ -18,6 +18,37 @@ export interface IFilterProps {
   setIsMoreFiltersSelected(isSelected: boolean): void,
 }
 
+export interface IFilmsFilterProps extends IFilterProps {
+  allFilms: IFilm[],
+  allLocations: ILocation[],
+  fetchLocations(): void,
+}
+
+export interface IPeopleFilterProps extends IFilterProps {
+  allFilms: IFilm[],
+  allLocations: ILocation[],
+  allPeople: IPerson[],
+  fetchLocations(): void,
+  fetchFilms(): void,
+}
+
+export interface ILocationsFilterProps extends IFilterProps {
+  allFilms: IFilm[],
+  allLocations: ILocation[],
+  fetchFilms(): void,
+}
+
+export interface ISpeciesFilterProps extends IFilterProps {
+  allFilms: IFilm[],
+  fetchFilms(): void,
+}
+
+export interface IVehiclesFilterProps extends IFilterProps {
+  allFilms: IFilm[],
+  allVehicles: IVehicle[],
+  fetchFilms(): void,
+}
+
 interface IDefaultProps {
   loading: boolean,
   error: string,
@@ -93,8 +124,8 @@ export interface ISpecie {
   id: string,
   name: string,
   classification: string,
-  eye_color: string,
-  hair_color: string,
+  eye_colors: string,
+  hair_colors: string,
   people: string[],
   films: string[],
   url: string,

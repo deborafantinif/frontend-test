@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IFilterProps } from '../interfaces/propsComponents';
-import { handleMoreFilters } from '../redux/actions/filmsAction';
+import { IVehiclesFilterProps } from '../interfaces/propsComponents';
+import { IRootState } from '../interfaces/state';
+import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 
-function VehiclesFilter({setIsMoreFiltersSelected}: IFilterProps) {
+function VehiclesFilter({setIsMoreFiltersSelected, allFilms, allVehicles, fetchFilms}: IVehiclesFilterProps) {
+  useEffect(() => {
+    fetchFilms()
+  }, [])
+  const classificationsName = allVehicles.map((vehicle) => vehicle.vehicle_class);
+  const classificationsUniqName = [ ...new Set(classificationsName)];
   return (
     <form>
       <input type="text" name="name" placeholder='Search by name' />
@@ -13,13 +19,17 @@ function VehiclesFilter({setIsMoreFiltersSelected}: IFilterProps) {
       <div>
         <label htmlFor="classification">Search by classification name</label>
         <select name="classification" id="classification">
-          <option value="fff">fff</option>
+          { classificationsUniqName.map((classification) => (
+            <option key={classification} value={classification}>{classification}</option>
+          ))}
         </select>
       </div>
       <div>
         <label htmlFor="film">Search by film name</label>
         <select name="film" id="film">
-          <option value="fff">fff</option>
+          { allFilms.map((film) => (
+            <option key={film.id} value={film.title}>{film.title}</option>
+          ))}
         </select>
       </div>
       <div>
@@ -33,9 +43,15 @@ function VehiclesFilter({setIsMoreFiltersSelected}: IFilterProps) {
   )
 }
 
+const mapState = (state: IRootState) => ({
+  allFilms: state.filmsReducer.allFilms,
+  allVehicles: state.vehiclesReducer.allVehicles,
+});
+
 const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
   setIsMoreFiltersSelected: (isSelected: boolean) =>
     dispatch(handleMoreFilters(isSelected)),
+  fetchFilms: () => dispatch(getFilms()),
 });
 
-export default connect(null, mapDispatch)(VehiclesFilter)
+export default connect(mapState, mapDispatch)(VehiclesFilter)

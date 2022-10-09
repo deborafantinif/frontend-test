@@ -15,12 +15,12 @@ export function CardSpecie({specie}: ISpecieProps) {
       <p>
         <span>Eye color:</span>
         {" "}
-        {specie.eye_color}
+        {specie.eye_colors}
       </p>
       <p>
         <span>Hair color:</span>
         {" "}
-        {specie.hair_color}
+        {specie.hair_colors}
       </p>
       <button
         type="button"

@@ -8,12 +8,13 @@ export function CardFilm({film}: IFilmProps) {
     <section>
       <div>
         <h3>{film.title}</h3>
+        <span>{film.rt_score}</span>
         <span>{film.original_title}</span>
         <span>{film.release_date}</span>
         <p>
           <span>Duration:</span>
           {' '}
-          {film.rt_score}
+          {film.running_time}
         </p>
         <p>
           <span>Director:</span>

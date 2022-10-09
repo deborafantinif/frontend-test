@@ -1,5 +1,5 @@
 import { IResponseAction } from '../../interfaces/actions';
-import { FAILED_REQUEST, GET_VEHICLES_BY_NAME, REQUEST_VEHICLES, SAVE_VEHICLES } from '../actions/actionTypes';
+import { FAILED_REQUEST, GET_VEHICLES_BY_FILTERS, GET_VEHICLES_BY_NAME, REQUEST_VEHICLES, SAVE_VEHICLES } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   vehicles: [],
@@ -29,6 +29,11 @@ const vehiclesReducer = (state = INITIAL_STATE, action: IResponseAction) => {
       error: action.payload,
     }
   case GET_VEHICLES_BY_NAME:
+    return {
+      ...state,
+      vehicles: action.payload,
+    }
+  case GET_VEHICLES_BY_FILTERS:
     return {
       ...state,
       vehicles: action.payload,

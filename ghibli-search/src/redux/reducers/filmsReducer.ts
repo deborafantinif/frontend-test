@@ -1,5 +1,5 @@
 import { IResponseAction } from '../../interfaces/actions';
-import { FAILED_REQUEST, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from '../actions/actionTypes';
+import { FAILED_REQUEST, GET_FILMS_BY_FILTERS, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   films: [],
@@ -38,6 +38,11 @@ const filmsReducer = (state = INITIAL_STATE, action: IResponseAction) => {
     return {
       ...state,
       isMoreFiltersSelected: action.payload,
+    }
+  case GET_FILMS_BY_FILTERS:
+    return {
+      ...state,
+      films: action.payload,
     }
   default:
     return state;

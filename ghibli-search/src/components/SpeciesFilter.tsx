@@ -1,30 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { ISpeciesFilterProps } from '../interfaces/propsComponents';
+import { ISpecie, ISpeciesFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
+import { getSpeciesByFilters } from '../redux/actions/speciesAction';
 
-function SpeciesFilter({setIsMoreFiltersSelected, allFilms, fetchFilms}: ISpeciesFilterProps) {
+function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter, allSpecies}: ISpeciesFilterProps) {
+  const [speciesName, setSpeciesName] = useState('');
+  const [eyeColorName, setEyeColorName] = useState('');
+  const [hairColorName, setHairColorName] = useState('');
+
   useEffect(() => {
     fetchFilms()
   }, [])
+
+  function filteringSpecies() {
+    const filteredSpecie = allSpecies
+    .filter((specie) => specie.name.toLowerCase().includes(speciesName.toLowerCase()))
+    .filter((specie) => specie.eye_colors.toLowerCase().includes(eyeColorName.toLowerCase()))
+    .filter((specie) => specie.hair_colors.toLowerCase().includes(hairColorName.toLowerCase()))
+    requestWithFilter(filteredSpecie);
+  }
+  function handleSendSpecies() {
+    setIsMoreFiltersSelected(false)
+    filteringSpecies()
+  }
+
   return (
     <form>
-      <input type="text" name="name" placeholder='Search by name' />
-      <input type="text" name="person" placeholder='Search by person name' />
-      <input type="text" name="eye-color" placeholder='Search by eye color name' />
-      <input type="text" name="hair-color" placeholder='Search by hair color name' />
-      <div>
-        <label htmlFor="film">Search by film name</label>
-        <select name="film" id="film">
-          { allFilms.map((film) => (
-            <option key={film.id} value={film.title}>{film.title}</option>
-          ))} 
-        </select>
-      </div>
-      <button type='button' onClick={() => setIsMoreFiltersSelected(false)}>
+      <input type="text" name="name" placeholder='Search by name' onChange={(e) => setSpeciesName(e.target.value)} />
+      <input type="text" name="eye-color" placeholder='Search by eye color' onChange={(e) => setEyeColorName(e.target.value)} />
+      <input type="text" name="hair-color" placeholder='Search by hair color' onChange={(e) => setHairColorName(e.target.value)} />
+      <button type='button' onClick={handleSendSpecies}>
         SEARCH
       </button>
     </form>
@@ -33,12 +42,14 @@ function SpeciesFilter({setIsMoreFiltersSelected, allFilms, fetchFilms}: ISpecie
 
 const mapState = (state: IRootState) => ({
   allFilms: state.filmsReducer.allFilms,
+  allSpecies: state.speciesReducer.allSpecies,
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
   setIsMoreFiltersSelected: (isSelected: boolean) =>
     dispatch(handleMoreFilters(isSelected)),
   fetchFilms: () => dispatch(getFilms()),
+  requestWithFilter: (species: ISpecie[]) => dispatch(getSpeciesByFilters(species)),
 });
 
 export default connect(mapState, mapDispatch)(SpeciesFilter)

@@ -1,5 +1,5 @@
 import { IResponseAction } from '../../interfaces/actions';
-import { FAILED_REQUEST, GET_LOCATIONS_BY_NAME, REQUEST_LOCATIONS, SAVE_LOCATIONS } from '../actions/actionTypes';
+import { FAILED_REQUEST, GET_LOCATIONS_BY_FILTERS, GET_LOCATIONS_BY_NAME, REQUEST_LOCATIONS, SAVE_LOCATIONS } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   locations: [],
@@ -29,6 +29,11 @@ const locationsReducer = (state = INITIAL_STATE, action: IResponseAction) => {
       error: action.payload,
     }
   case GET_LOCATIONS_BY_NAME:
+    return {
+      ...state,
+      locations: action.payload,
+    }
+  case GET_LOCATIONS_BY_FILTERS:
     return {
       ...state,
       locations: action.payload,

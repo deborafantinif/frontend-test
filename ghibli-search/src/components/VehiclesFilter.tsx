@@ -1,12 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IVehiclesFilterProps } from '../interfaces/propsComponents';
+import { IVehicle, IVehiclesFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
+import { getVehiclesByFilters } from '../redux/actions/vehiclesAction';
 
-function VehiclesFilter({setIsMoreFiltersSelected, allFilms, allVehicles, fetchFilms}: IVehiclesFilterProps) {
+function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requestWithFilter}: IVehiclesFilterProps) {
+  const [vehiclesName, setVehiclesName] = useState('');
+  const [classificationName, setClassificationName] = useState('');
+  const [minLength, setMinLength] = useState('');
+  const [maxLength, setMaxLength] = useState('10000');
+
+  function filteringVehicles() {
+    const filteredVehicles = allVehicles
+    .filter((vehicle) => vehicle.name.toLowerCase().includes(vehiclesName.toLowerCase()))
+    .filter((vehicle) => vehicle.vehicle_class.toLowerCase().includes(classificationName.toLowerCase()))
+    .filter((vehicle) => (Number(vehicle.length) >= Number(minLength) && Number(vehicle.length) <= Number(maxLength)))
+
+    requestWithFilter(filteredVehicles);
+  }
+  function handleSendVehicles() {
+    setIsMoreFiltersSelected(false)
+    filteringVehicles()
+  }
+
   useEffect(() => {
     fetchFilms()
   }, [])
@@ -14,29 +33,21 @@ function VehiclesFilter({setIsMoreFiltersSelected, allFilms, allVehicles, fetchF
   const classificationsUniqName = [ ...new Set(classificationsName)];
   return (
     <form>
-      <input type="text" name="name" placeholder='Search by name' />
-      <input type="text" name="person" placeholder='Search by pilot name' />
+      <input type="text" name="name" placeholder='Search by name' onChange={(e) => setVehiclesName(e.target.value)} />
       <div>
         <label htmlFor="classification">Search by classification name</label>
-        <select name="classification" id="classification">
+        <select name="classification" id="classification" onChange={(e) => setClassificationName(e.target.value)}>
+          <option value='none'></option>
           { classificationsUniqName.map((classification) => (
             <option key={classification} value={classification}>{classification}</option>
-          ))}
+            ))}
         </select>
       </div>
       <div>
-        <label htmlFor="film">Search by film name</label>
-        <select name="film" id="film">
-          { allFilms.map((film) => (
-            <option key={film.id} value={film.title}>{film.title}</option>
-          ))}
-        </select>
+        <input type="number" name="max-length" placeholder='Minimum length' onChange={(e) => setMaxLength(e.target.value)} />
+        <input type="number" name="min-length" placeholder='High length' onChange={(e) => setMinLength(e.target.value)} />
       </div>
-      <div>
-        <input type="number" name="max-length" placeholder='Minimum length' />
-        <input type="number" name="min-length" placeholder='High length' />
-      </div>
-      <button type='button' onClick={() => setIsMoreFiltersSelected(false)}>
+      <button type='button' onClick={handleSendVehicles}>
         SEARCH
       </button>
     </form>
@@ -52,6 +63,7 @@ const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
   setIsMoreFiltersSelected: (isSelected: boolean) =>
     dispatch(handleMoreFilters(isSelected)),
   fetchFilms: () => dispatch(getFilms()),
+  requestWithFilter: (vehicles: IVehicle[]) => dispatch(getVehiclesByFilters(vehicles)),
 });
 
 export default connect(mapState, mapDispatch)(VehiclesFilter)

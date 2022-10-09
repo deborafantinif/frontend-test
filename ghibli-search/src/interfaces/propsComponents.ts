@@ -22,6 +22,7 @@ export interface IFilmsFilterProps extends IFilterProps {
   allFilms: IFilm[],
   allLocations: ILocation[],
   fetchLocations(): void,
+  requestWithFilter(films: IFilm[]): void,
 }
 
 export interface IPeopleFilterProps extends IFilterProps {
@@ -30,23 +31,28 @@ export interface IPeopleFilterProps extends IFilterProps {
   allPeople: IPerson[],
   fetchLocations(): void,
   fetchFilms(): void,
+  requestWithFilter(films: IPerson[]): void,
 }
 
 export interface ILocationsFilterProps extends IFilterProps {
   allFilms: IFilm[],
   allLocations: ILocation[],
   fetchFilms(): void,
+  requestWithFilter(locations: ILocation[]): void,
 }
 
 export interface ISpeciesFilterProps extends IFilterProps {
   allFilms: IFilm[],
+  allSpecies: ISpecie[],
   fetchFilms(): void,
+  requestWithFilter(species: ISpecie[]): void,
 }
 
 export interface IVehiclesFilterProps extends IFilterProps {
   allFilms: IFilm[],
   allVehicles: IVehicle[],
   fetchFilms(): void,
+  requestWithFilter(vehicles: IVehicle[]): void,
 }
 
 interface IDefaultProps {

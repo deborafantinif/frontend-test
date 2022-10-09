@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchFilms } from "../../api/ghibliApi";
 import { IFilm } from "../../interfaces/propsComponents";
-import { FAILED_REQUEST, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from "./actionTypes";
+import { FAILED_REQUEST, GET_FILMS_BY_FILTERS, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from "./actionTypes";
 
 const requestFilms = () => ({
   type: REQUEST_FILMS,
@@ -38,4 +38,9 @@ export const getFilmsByTitle = (filteredFilms: IFilm[]) => ({
 export const handleMoreFilters = (isSelected: boolean) => ({
   type: HANDLE_MORE_FILTERS,
   payload: isSelected,
+});
+
+export const getFilmsByFilters = (films: IFilm[]) => ({
+  type: GET_FILMS_BY_FILTERS,
+  payload: films,
 });

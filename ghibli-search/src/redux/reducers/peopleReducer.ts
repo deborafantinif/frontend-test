@@ -1,5 +1,5 @@
 import { IResponseAction } from '../../interfaces/actions';
-import { FAILED_REQUEST, GET_PEOPLE_BY_NAME, REQUEST_PEOPLE, SAVE_PEOPLE } from '../actions/actionTypes';
+import { FAILED_REQUEST, GET_PEOPLE_BY_FILTERS, GET_PEOPLE_BY_NAME, REQUEST_PEOPLE, SAVE_PEOPLE } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   people: [],
@@ -29,6 +29,11 @@ const peopleReducer = (state = INITIAL_STATE, action: IResponseAction) => {
       error: action.payload,
     }
   case GET_PEOPLE_BY_NAME:
+    return {
+      ...state,
+      people: action.payload,
+    }
+  case GET_PEOPLE_BY_FILTERS:
     return {
       ...state,
       people: action.payload,

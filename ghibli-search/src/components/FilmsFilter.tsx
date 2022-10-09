@@ -1,26 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IFilmsFilterProps } from '../interfaces/propsComponents';
+import { IFilm, IFilmsFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
-import { handleMoreFilters } from '../redux/actions/filmsAction';
+import { getFilmsByFilters, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 
-function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLocations}: IFilmsFilterProps) {
+function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLocations, requestWithFilter }: IFilmsFilterProps) {
+  const [filmName, setFilmName] = useState('');
+  const [directorName, setDirectorName] = useState('');
+  const [producerName, setProducerName] = useState('');
+  const [locationName, setLocationName] = useState('');
+  const [minScore, setMinScore] = useState('');
+  const [maxScore, setMaxScore] = useState('10000');
+  const [minDuration, setMinDuration] = useState('');
+  const [maxDuration, setMaxDuration] = useState('1000');
+  const [minYear, setMinYear] = useState('');
+  const [maxYear, setMaxYear] = useState('10000');
   useEffect(() => {
     fetchLocations()
   }, [])
+
   const directorsName = allFilms.map((film) => film.director);
   const directorsUniqName = [ ...new Set(directorsName)];
   const producersName = allFilms.map((film) => film.producer);
   const producersUniqName = [ ...new Set(producersName)];
+
+  function filteringFilms() {
+    const filteredFilms = allFilms
+      .filter((film) => film.title.toLowerCase().includes(filmName.toLowerCase()))
+      .filter((film) => film.director.toLowerCase().includes(directorName.toLowerCase()))
+      .filter((film) => film.producer.toLowerCase().includes(producerName.toLowerCase()))
+      .filter((film) => (Number(film.rt_score) >= Number(minScore) && Number(film.rt_score) <= Number(maxScore)))
+      .filter((film) => (Number(film.running_time) >= Number(minDuration) && Number(film.running_time) <= Number(maxDuration)))
+      .filter((film) => (Number(film.release_date) >= Number(minYear) && Number(film.release_date) <= Number(maxYear)))
+      .filter((film) => allLocations
+        .find((location) => (
+          location.films.includes(`https://ghibliapi.herokuapp.com/films/${film.id}`) && location.name.toLowerCase().includes(locationName.toLowerCase())
+        )))
+    requestWithFilter(filteredFilms);
+  }
+  function handleSendFilters() {
+    setIsMoreFiltersSelected(false)
+    filteringFilms()
+  }
   return (
     <form>
-      <input type="text" name="title" placeholder='Search by film name' />
+      <input type="text" name="title" placeholder='Search by film name' onChange={(e) =>setFilmName(e.target.value)} />
       <div>
         <label htmlFor="director">Search by director name</label>
-        <select name="director" id="director">
+        <select name="director" id="director" onChange={(e) =>setDirectorName(e.target.value)}>
+          <option value='none'></option>
           { directorsUniqName.map((director) => (
             <option key={director} value={director}>{director}</option>
           ))}
@@ -28,7 +59,8 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
       </div>
       <div>
         <label htmlFor="producer">Search by producer name</label>
-        <select name="producer" id="producer">
+        <select name="producer" id="producer" onChange={(e) =>setProducerName(e.target.value)}>
+          <option value='none'></option>
           { producersUniqName.map((producer) => (
             <option key={producer} value={producer}>{producer}</option>
           ))}       
@@ -36,26 +68,26 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
       </div>
       <div>
         <label htmlFor="location">Search by location name</label>
-        <select name="location" id="location">
+        <select name="location" id="location" onChange={(e) =>setLocationName(e.target.value)}>
+          <option value='none'></option>
           { allLocations.map((location) => (
             <option key={location.id} value={location.name}>{location.name}</option>
           ))}       
         </select>
       </div>
-      <input type="text" name="title" placeholder='Search by location name' />
       <div>
-        <input type="number" name="max-score" placeholder='Minimum score' />
-        <input type="number" name="min-score" placeholder='High name' />
+        <input type="number" name="max-score" placeholder='Minimum score' onChange={(e) =>setMinScore(e.target.value)} />
+        <input type="number" name="min-score" placeholder='High name' onChange={(e) =>setMaxScore(e.target.value)} />
       </div>
       <div>
-        <input type="number" name="max-duration" placeholder='Minimum duration' />
-        <input type="number" name="min-duration" placeholder='High duration' />
+        <input type="number" name="max-duration" placeholder='Minimum duration' onChange={(e) =>setMinDuration(e.target.value)} />
+        <input type="number" name="min-duration" placeholder='High duration' onChange={(e) =>setMaxDuration(e.target.value)} />
       </div>
       <div>
-        <input type="number" name="max-year" placeholder='Minimum year' />
-        <input type="number" name="min-year" placeholder='High year' />
+        <input type="number" name="max-year" placeholder='Minimum year' onChange={(e) =>setMinYear(e.target.value)} />
+        <input type="number" name="min-year" placeholder='High year' onChange={(e) =>setMaxYear(e.target.value)} />
       </div>
-      <button type='button' onClick={() => setIsMoreFiltersSelected(false)}>
+      <button type='button' onClick={handleSendFilters}>
         SEARCH
       </button>
     </form>
@@ -71,6 +103,7 @@ const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
   setIsMoreFiltersSelected: (isSelected: boolean) =>
     dispatch(handleMoreFilters(isSelected)),
   fetchLocations: () => dispatch(getLocations()),
+  requestWithFilter: (films: IFilm[]) => dispatch(getFilmsByFilters(films)),
 });
 
 export default connect(mapState, mapDispatch)(FilmsFilter)

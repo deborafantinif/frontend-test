@@ -169,3 +169,15 @@ export interface IVehicleProps {
 export interface IDetails {
   endpoint: string,
 }
+
+export interface IFilmDetailsProps {
+  id: string,
+  allPeople: IPerson[],
+  allSpecies: ISpecie[],
+  allVehicles: IVehicle[],
+  allLocations: ILocation[],
+  fetchPeople(): void;
+  fetchSpecies(): void;
+  fetchVehicles(): void;
+  fetchLocation(): void;
+}

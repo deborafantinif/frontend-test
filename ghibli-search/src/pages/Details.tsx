@@ -1,5 +1,6 @@
 import React from 'react';
-import { FilmsDetails } from '../components/FilmDetails';
+import { useParams } from 'react-router-dom';
+import FilmsDetails from '../components/FilmDetails';
 import { HeaderDetails } from '../components/HeaderDetails';
 import { LocationsDetails } from '../components/LocationsDetails';
 import { PeopleDetails } from '../components/PeopleDetails';
@@ -8,10 +9,11 @@ import { VehiclesDetails } from '../components/VehiclesDetails';
 import { IDetails } from '../interfaces/propsComponents';
 
 export function Details({endpoint}: IDetails) {
+  const {id} = useParams();
   function renderSwitch(param: string) {
     switch(param) {
       case 'film':
-        return <FilmsDetails/>
+        return <FilmsDetails id={id as string}/>
       case 'person':
         return <PeopleDetails/>
       case 'location':

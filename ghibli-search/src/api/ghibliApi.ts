@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IFilm, ILocation, IPerson } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from '../interfaces/propsComponents';
 
 export async function fetchFilms() {
   return axios.get('https://ghibliapi.herokuapp.com/films')
@@ -36,7 +36,17 @@ export async function fetchSpecies() {
   .then((result) => result.data);
 }
 
+export async function fetchSpeciesById(id: string): Promise<ISpecie> {
+  return axios.get(`https://ghibliapi.herokuapp.com/species/${id}`)
+    .then((result) => result.data);
+}
+
 export async function fetchVehicles() {
   return axios.get('https://ghibliapi.herokuapp.com/vehicles')
   .then((result) => result.data);
+}
+
+export async function fetchVehicleById(id: string): Promise<IVehicle> {
+  return axios.get(`https://ghibliapi.herokuapp.com/vehicles/${id}`)
+    .then((result) => result.data);
 }

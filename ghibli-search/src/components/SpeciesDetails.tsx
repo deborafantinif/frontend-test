@@ -156,7 +156,7 @@ function SpeciesDetails({id, allFilms, fetchFilm, fetchLocations, fetchVehicles,
           </div>
         ))}
       </div> 
-      { vehicles.length > 0 ? (
+      { locations.length > 0 ? (
         <div>
         <h3>Locations</h3>
         { locations.map((location) => (

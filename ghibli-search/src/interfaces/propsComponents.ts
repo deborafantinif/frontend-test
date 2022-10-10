@@ -217,3 +217,15 @@ export interface ISpeciesDetailsProps {
   fetchVehicles(): void;
   fetchPeople(): void;
 }
+
+export interface IVehiclesDetailsProps {
+  id: string,
+  allFilms: IFilm[],
+  allLocations: ILocation[],
+  allSpecies: ISpecie[],
+  allPeople: IPerson[],
+  fetchFilm(): void;
+  fetchLocations(): void;
+  fetchSpecies(): void;
+  fetchPeople(): void;
+}

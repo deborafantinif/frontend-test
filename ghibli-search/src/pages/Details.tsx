@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import FilmsDetails from '../components/FilmDetails';
 import { HeaderDetails } from '../components/HeaderDetails';
 import { LocationsDetails } from '../components/LocationsDetails';
-import { PeopleDetails } from '../components/PeopleDetails';
+import PeopleDetails from '../components/PeopleDetails';
 import { SpeciesDetails } from '../components/SpeciesDetails';
 import { VehiclesDetails } from '../components/VehiclesDetails';
 import { IDetails } from '../interfaces/propsComponents';
@@ -15,7 +15,7 @@ export function Details({endpoint}: IDetails) {
       case 'film':
         return <FilmsDetails id={id as string}/>
       case 'person':
-        return <PeopleDetails/>
+        return <PeopleDetails id={id as string}/>
       case 'location':
         return <LocationsDetails/>
       case 'specie':

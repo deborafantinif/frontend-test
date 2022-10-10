@@ -112,7 +112,7 @@ export interface ILocation {
   climate: string,
   terrain: string,
   surface_water: string,
-  residents: string,
+  residents: string[],
   films: string[],
   url: string,
 }
@@ -177,6 +177,18 @@ export interface IFilmDetailsProps {
   allVehicles: IVehicle[],
   allLocations: ILocation[],
   fetchPeople(): void;
+  fetchSpecies(): void;
+  fetchVehicles(): void;
+  fetchLocation(): void;
+}
+
+export interface IPeopleDetailsProps {
+  id: string,
+  allFilms: IFilm[],
+  allSpecies: ISpecie[],
+  allVehicles: IVehicle[],
+  allLocations: ILocation[],
+  fetchFilm(): void;
   fetchSpecies(): void;
   fetchVehicles(): void;
   fetchLocation(): void;

@@ -10,7 +10,7 @@ import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
 
-export function FilmsDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IFilmDetailsProps) {
+function FilmsDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IFilmDetailsProps) {
   const [film, setFilm] = useState<IFilm>({} as IFilm);
   const [people, setPeople] = useState<IPerson[]>([] as IPerson[]);
   const [locations, setLocations] = useState<ILocation[]>([] as ILocation[]);

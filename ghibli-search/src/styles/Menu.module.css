@@ -16,6 +16,13 @@
   outline: none;
   transition: transform 200ms ease-in-out 0s;
 } */
+.indexUp {
+  z-index: 2;
+}
+
+.indexDown {
+  z-index: 2;
+}
 
 summary {
   color: var(--brown-300);

@@ -8,6 +8,7 @@ import { Loading } from '../components/Loading';
 import { IFilmsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms } from '../redux/actions/filmsAction';
+import styles from '../styles/Films.module.css'
 
 function Films({ fetchFilms, films, loading, error }: IFilmsProps) {
   useEffect(() => {
@@ -17,9 +18,11 @@ function Films({ fetchFilms, films, loading, error }: IFilmsProps) {
   return (
     <div>
       <HeaderHome endpoint={"films"}/>
-      { (loading) ?
-        <Loading/> :
-        films.map((film) => <CardFilm key={film.id} film={film} /> ) }
+      <main className={styles.cards}>
+        { (loading) ?
+          <Loading/> :
+          films.map((film) => <CardFilm key={film.id} film={film} /> ) }
+      </main>
     </div>
   )
 }

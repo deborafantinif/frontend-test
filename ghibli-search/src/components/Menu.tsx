@@ -9,11 +9,11 @@ export function Menu() {
     <details>
       <summary>
         { isSelectedMenu ?
-        <X size={40} onClick={() => setIsSelectedMenu(!isSelectedMenu)} /> :
-        <List size={40} onClick={() => setIsSelectedMenu(!isSelectedMenu)}/>
+        <X size={40} className={styles.indexUp} onClick={() => setIsSelectedMenu(!isSelectedMenu)} /> :
+        <List size={40} className={styles.indexDown} onClick={() => setIsSelectedMenu(!isSelectedMenu)}/>
         }
       </summary>
-      <nav className={styles.menu}>
+      <nav className={ (isSelectedMenu) ? `${styles.menu} ${styles.indexUp}` : `${styles.menu} ${styles.indexDown}`}>
         <a href="/films">Films</a>
         <a href="/people">People</a>
         <a href="/locations">Locations</a>

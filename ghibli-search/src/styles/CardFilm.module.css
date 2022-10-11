@@ -1,0 +1,140 @@
+.card {
+  height: 300px;
+  width: 370px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+  transition: all 0.3s 0s ease;
+}
+
+.info {
+  background-color: var(--green-200);
+  border-radius: 5px 5px 0 0;
+  padding: 15px;
+  height: 45%;
+  /* position: absolute; */
+}
+
+.score {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: var(--green-100);
+  border-radius: 5px;
+}
+
+.title h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
+  display: inline-block;
+}
+
+.title span {
+  display: inline;
+  font-size: 10px;
+  color: var(--blue-700);
+  /* text-shadow: 1px 1px 2px var(--gray-600); */
+}
+
+.title p {
+  font-size: 10px;
+  color: var(--gray-500);
+}
+
+.details {
+  font-size: 10px;
+  padding: 10px 0;
+}
+
+.description {
+  background-color: var(--white);
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+  height: 55%;
+}
+
+.description p {
+  font-size: 12px;
+  /* white-space: wrap;
+  height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  line-height: 2.5ex;
+  height: 100px; /* 2.5ex for each visible line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.description button {
+  appearance: none;
+  background-color: var(--blue-700);
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 5px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: var(--green-200);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 10px;
+  list-style: none;
+  padding: 4px 12px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100px;
+  word-wrap: break-word;
+}
+
+.description button:hover {
+  background-color: var(--green-200);
+  color: var(--blue-700);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.description button:disabled {
+  background-color: var(--yellow-500);
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.description button:active {
+  background-color: var(--yellow-300);
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.description button:focus {
+  outline: 1px transparent;
+}
+
+.description button:before {
+  display: none;
+}
+
+.description button:-webkit-details-marker {
+  display: none;
+}

@@ -8,6 +8,7 @@ import { Loading } from '../components/Loading';
 import { ISpeciesProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getSpecies } from '../redux/actions/speciesAction';
+import styles from '../styles/Cards.module.css';
 
 function Species({ fetchSpecies, species, loading, error }: ISpeciesProps) {
   useEffect(() => {
@@ -16,11 +17,12 @@ function Species({ fetchSpecies, species, loading, error }: ISpeciesProps) {
   if (error.length > 1) console.error(error);
   return (
     <div>
-      <p>People</p>
       <HeaderHome endpoint='species'/>
-      { (loading) ?
-        <Loading/> :
-        species.map((specie) => <CardSpecie key={specie.id} specie={specie} /> ) }
+      <div className={styles.cards}>
+        { (loading) ?
+          <Loading/> :
+          species.map((specie) => <CardSpecie key={specie.id} specie={specie} /> ) }
+      </div>
     </div>
   )
 }

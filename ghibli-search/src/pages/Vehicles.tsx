@@ -8,6 +8,7 @@ import { Loading } from '../components/Loading';
 import { IVehiclesProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getVehicles } from '../redux/actions/vehiclesAction';
+import styles from '../styles/Cards.module.css';
 
 function Vehicles({ fetchVehicles, vehicles, loading, error }: IVehiclesProps) {
   useEffect(() => {
@@ -16,11 +17,12 @@ function Vehicles({ fetchVehicles, vehicles, loading, error }: IVehiclesProps) {
   if (error.length > 1) console.error(error);
   return (
     <div>
-      <p>Vehicles</p>
       <HeaderHome endpoint='vehicles'/>
-      { (loading) ?
-        <Loading/> :
-        vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} /> ) }
+      <div className={styles.cards}>
+        { (loading) ?
+          <Loading/> :
+          vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} /> ) }
+      </div>
     </div>
   )
 }

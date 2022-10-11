@@ -8,6 +8,7 @@ import { Loading } from '../components/Loading';
 import { ILocationsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getLocations } from '../redux/actions/locationsAction';
+import styles from '../styles/Cards.module.css';
 
 function Locations({ fetchLocations, locations, loading, error }: ILocationsProps) {
   useEffect(() => {
@@ -16,11 +17,12 @@ function Locations({ fetchLocations, locations, loading, error }: ILocationsProp
   if (error.length > 1) console.error(error);
   return (
     <div>
-      <p>Locations</p>
       <HeaderHome endpoint='locations'/>
-      { (loading) ?
-        <Loading/> :
-        locations.map((location) => <CardLocation key={location.id} location={location} /> ) }
+      <div className={styles.cards}>
+        { (loading) ?
+          <Loading/> :
+          locations.map((location) => <CardLocation key={location.id} location={location} /> ) }
+      </div>
     </div>
   )
 }

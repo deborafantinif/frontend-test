@@ -23,6 +23,7 @@ import { Menu } from "./Menu";
 import PeopleFilter from "./PeopleFilter";
 import SpeciesFilter from "./SpeciesFilter";
 import VehiclesFilter from "./VehiclesFilter";
+import styles from '../styles/HeaderHome.module.css'
 
 function HeaderHome({
   allFilms,
@@ -102,7 +103,7 @@ function HeaderHome({
     }
   }
   return (
-    <header>
+    <header className={styles.header}>
       <Menu />
       <h1>GHIBLI SEARCH</h1>
       <input
@@ -112,7 +113,7 @@ function HeaderHome({
         onChange={(event) => handleInput(event)}
       />
       <button type="button" onClick={() => setIsMoreFiltersSelected(true)}>
-        <Plus size={25} /> FILTERS
+        <Plus size={15} /> FILTERS
       </button>
       { isMoreFiltersSelected ? handleFilters() : null }
     </header>

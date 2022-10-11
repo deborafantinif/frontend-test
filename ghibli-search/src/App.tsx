@@ -9,8 +9,7 @@ import Vehicles from "./pages/Vehicles";
 
 function App() {
   return (
-    <div>
-      <h1>Studio Ghibli</h1>
+    <>
       <Routes>
         <Route path="/" element={ <Navigate to="/films"/>}/>
         <Route path="/films" element={<Films/>}/>
@@ -24,7 +23,7 @@ function App() {
         <Route path="/vehicles" element={<Vehicles/>}/>
         <Route path="/vehicles/:id" element={<Details endpoint="vehicle"/>}/>
       </Routes>
-    </div>
+    </>
   );
 }
 

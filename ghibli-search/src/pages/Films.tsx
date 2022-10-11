@@ -16,7 +16,6 @@ function Films({ fetchFilms, films, loading, error }: IFilmsProps) {
   if (error.length > 1) console.error(error);
   return (
     <div>
-      <p>Films</p>
       <HeaderHome endpoint={"films"}/>
       { (loading) ?
         <Loading/> :

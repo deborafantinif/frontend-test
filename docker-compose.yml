@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: ./ghibli-search
+    container_name: web_ghibli_search
+    ports:
+      - 3000:5173
+    volumes:
+      - ./ghibli-search:/app-front

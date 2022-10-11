@@ -8,6 +8,7 @@ import { Loading } from '../components/Loading';
 import { IPeopleProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getPeople } from '../redux/actions/peopleAction';
+import styles from '../styles/Cards.module.css';
 
 function People({ fetchPeople, people, loading, error }: IPeopleProps) {
   useEffect(() => {
@@ -16,11 +17,12 @@ function People({ fetchPeople, people, loading, error }: IPeopleProps) {
   if (error.length > 1) console.error(error);
   return (
     <div>
-      <p>People</p>
       <HeaderHome endpoint='people'/>
-      { (loading) ?
-        <Loading/> :
-        people.map((person) => <CardPerson key={person.id} person={person} /> ) }
+      <div className={styles.cards}>
+        { (loading) ?
+          <Loading/> :
+          people.map((person) => <CardPerson key={person.id} person={person} /> ) }
+      </div>
     </div>
   )
 }

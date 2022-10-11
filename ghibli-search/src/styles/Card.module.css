@@ -1,10 +1,15 @@
+.cardPerson {
+  background-color: var(--orange-500);
+}
+
 .card {
-  height: 300px;
-  width: 370px;
+  height: 200px;
+  width: 220px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin: 10px 0;
   position: relative;
+  padding: 20px 10px;
 }
 
 .card:hover {
@@ -13,66 +18,30 @@
   transition: all 0.3s 0s ease;
 }
 
-.info {
-  background-color: var(--green-200);
-  border-radius: 5px 5px 0 0;
-  padding: 15px;
-  height: 45%;
-  /* position: absolute; */
-}
-
-.score {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-weight: bold;
-  padding: 10px 20px;
-  background-color: var(--green-100);
-  border-radius: 5px;
-}
-
-.title h3 {
+h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 230px;
-  display: inline-block;
+  max-width: 200px;
 }
 
-.title span {
-  display: inline;
+.gender {
   font-size: 10px;
-  color: var(--blue-700);
-  /* text-shadow: 1px 1px 2px var(--gray-600); */
+  color: var(--white);
 }
 
-.title p {
-  font-size: 10px;
-  color: var(--gray-500);
+.card p {
+  font-size: 12px;
+  line-height: 2.5ex;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.details {
-  font-size: 10px;
+.card div {
   padding: 10px 0;
 }
 
-.description {
-  background-color: var(--white);
-  padding: 15px;
-  border-radius: 0 0 5px 5px;
-  height: 55%;
-}
-
-.description p {
-  font-size: 12px;
-  line-height: 2.5ex;
-  height: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-}
-
-.description button {
+.card button {
   appearance: none;
   background-color: var(--blue-700);
   border: 1px solid rgba(27, 31, 35, 0.15);
@@ -103,34 +72,35 @@
   word-wrap: break-word;
 }
 
-.description button:hover {
+.card button:hover {
   background-color: var(--green-200);
   color: var(--blue-700);
   text-decoration: none;
+  font-weight: 600;
   transition-duration: 0.1s;
 }
 
-.description button:disabled {
+.card button:disabled {
   background-color: var(--yellow-500);
   border-color: rgba(27, 31, 35, 0.15);
   color: #959DA5;
   cursor: default;
 }
 
-.description button:active {
+.card button:active {
   background-color: var(--yellow-300);
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
   transition: none 0s;
 }
 
-.description button:focus {
+.card button:focus {
   outline: 1px transparent;
 }
 
-.description button:before {
+.card button:before {
   display: none;
 }
 
-.description button:-webkit-details-marker {
+.card button:-webkit-details-marker {
   display: none;
 }

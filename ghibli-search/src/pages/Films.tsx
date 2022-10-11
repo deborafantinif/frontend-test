@@ -8,7 +8,7 @@ import { Loading } from '../components/Loading';
 import { IFilmsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms } from '../redux/actions/filmsAction';
-import styles from '../styles/Films.module.css'
+import styles from '../styles/Cards.module.css';
 
 function Films({ fetchFilms, films, loading, error }: IFilmsProps) {
   useEffect(() => {

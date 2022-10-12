@@ -6,7 +6,7 @@ import styles from '../styles/CardFilm.module.css'
 export function CardFilm({film}: IFilmProps) {
   const navigate = useNavigate();
   return (
-    <section className={styles.card}>
+    <section className={styles.card} data-cy={`card-film-${film.id}`}>
       <div className={styles.info}>
         <div className={styles.title}>
           <h3>{film.title}</h3>
@@ -36,6 +36,7 @@ export function CardFilm({film}: IFilmProps) {
         <p>{film.description}</p>
         <button
         type="button"
+        data-cy={`button-film-${film.id}`}
         onClick={ () => navigate(`/films/${film.id}`) }
       >
         READ MORE...

@@ -105,15 +105,16 @@ function HeaderHome({
   return (
     <header className={styles.header}>
       <Menu />
-      <h1>GHIBLI SEARCH</h1>
+      <h1 data-cy="header-title">GHIBLI SEARCH</h1>
       <input
         type="text"
         name="name"
+        data-cy="header-input-filter"
         className={styles.input}
         placeholder={`Search by ${endpoint} name...`}
         onChange={(event) => handleInput(event)}
       />
-      <button type="button" onClick={() => setIsMoreFiltersSelected(true)}>
+      <button data-cy="header-button-filters" type="button" onClick={() => setIsMoreFiltersSelected(true)}>
         <Plus size={15} /> FILTERS
       </button>
       { isMoreFiltersSelected ? handleFilters() : null }

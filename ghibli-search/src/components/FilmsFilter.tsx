@@ -47,7 +47,7 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
     filteringFilms()
   }
   return (
-    <>
+    <div data-cy="filters">
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
         <input
@@ -105,13 +105,13 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
         <div className={styles.filtersInputNumber}>
           <input
             type="number"
-            name="max-score"
+            name="min-score"
             placeholder="Minimum score"
             onChange={(e) => setMinScore(e.target.value)}
           />
           <input
             type="number"
-            name="min-score"
+            name="max-score"
             placeholder="High score"
             onChange={(e) => setMaxScore(e.target.value)}
           />
@@ -119,13 +119,13 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
         <div className={styles.filtersInputNumber}>
           <input
             type="number"
-            name="max-duration"
+            name="min-duration"
             placeholder="Minimum duration"
             onChange={(e) => setMinDuration(e.target.value)}
           />
           <input
             type="number"
-            name="min-duration"
+            name="max-duration"
             placeholder="High duration"
             onChange={(e) => setMaxDuration(e.target.value)}
           />
@@ -133,22 +133,22 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
         <div className={styles.filtersInputNumber}>
           <input
             type="number"
-            name="max-year"
+            name="min-year"
             placeholder="Minimum year"
             onChange={(e) => setMinYear(e.target.value)}
           />
           <input
             type="number"
-            name="min-year"
+            name="max-year"
             placeholder="High year"
             onChange={(e) => setMaxYear(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleSendFilters}>
+        <button data-cy="submit-filters" type="button" onClick={handleSendFilters}>
           SEARCH
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

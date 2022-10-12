@@ -102,7 +102,7 @@ function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, f
           <h3>People</h3>
           <div className={styles.cards}>
           {people.map((person) => (
-            <div key={person.id}>
+            <div key={person.id} data-cy={`card-person-${person.id}`}>
               <h4>{person.name}</h4>
               <span>{person.gender}</span>
               <p><b>Age:</b> {person.age}</p>
@@ -119,7 +119,7 @@ function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, f
           <h3>Locations</h3>
           <div className={styles.cards}>
           {locations.map((location) => (
-            <div key={location.id}>
+            <div key={location.id} data-cy={`card-location-${location.id}`}>
               <h4>{location.name}</h4>
               <p><b>Climate:</b> {location.climate}</p>
               <p><b>Terrain:</b> {location.terrain}</p>
@@ -134,7 +134,7 @@ function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, f
           <h3>Vehicles</h3>
           <div className={styles.cards}>
           {vehicles.map((vehicle) => (
-            <div key={vehicle.id}>
+            <div key={vehicle.id} data-cy={`card-vehicle-${vehicle.id}`}>
               <h4>{vehicle.name}</h4>
               <p><b>Classification:</b> {vehicle.vehicle_class}</p>
               <p><b>Length:</b> {vehicle.length}</p>

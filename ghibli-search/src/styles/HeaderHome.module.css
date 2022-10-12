@@ -2,12 +2,12 @@
   align-items: space-around;
   display: grid;
   justify-content:  space-around;
-  grid-template-columns: 60px 2fr 4fr 1fr;
+  grid-template-columns: 50px 2fr 5fr 1fr;
   margin: 20px auto;
   width: 90%;
 }
 
-.header input {
+.input {
   background-color: var(--yellow-200);
   border: 1px solid var(--brown-300);
   border-radius: 5px;
@@ -18,11 +18,11 @@
   width: 600px;
 }
 
-.header input::placeholder {
+.input::placeholder {
   color: var(--brown-300);
 }
 
-.header input:focus {
+.input:focus {
   outline: none;
   box-shadow: 0.2rem 0.8rem 1.6rem var(--yellow-200);
   border: none;

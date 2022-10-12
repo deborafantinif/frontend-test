@@ -109,6 +109,7 @@ function HeaderHome({
       <input
         type="text"
         name="name"
+        className={styles.input}
         placeholder={`Search by ${endpoint} name...`}
         onChange={(event) => handleInput(event)}
       />

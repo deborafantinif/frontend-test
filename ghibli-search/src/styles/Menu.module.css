@@ -66,11 +66,12 @@ details[open] .menu {
   justify-content: space-between;
   overflow: hidden;
   position: fixed;
+  padding-bottom: 18px;
   left: 10;
   animation: closeMenu 300ms ease-in-out forwards;
 }
 .menu a {
-  padding: 12px 24px;
+  padding: 12px;
   margin: 0 16px;
   color: var(--brown-300);
   border-bottom: 2px solid var(--yellow-500);

@@ -6,6 +6,7 @@ import { IVehicle, IVehiclesFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getVehiclesByFilters } from '../redux/actions/vehiclesAction';
+import styles from '../styles/Filters.module.css'
 
 function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requestWithFilter}: IVehiclesFilterProps) {
   const [vehiclesName, setVehiclesName] = useState('');
@@ -32,10 +33,12 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
   const classificationsName = allVehicles.map((vehicle) => vehicle.vehicle_class);
   const classificationsUniqName = [ ...new Set(classificationsName)];
   return (
-    <form>
+    <>
+      <div className={styles.backgroundFilters}></div>
+      <form className={styles.filtersForm}>
       <input type="text" name="name" placeholder='Search by name' onChange={(e) => setVehiclesName(e.target.value)} />
-      <div>
-        <label htmlFor="classification">Search by classification name</label>
+      <div className={styles.filtersSelect}>
+        <label htmlFor="classification">Search by classification:</label>
         <select name="classification" id="classification" onChange={(e) => setClassificationName(e.target.value)}>
           <option value='none'></option>
           { classificationsUniqName.map((classification) => (
@@ -43,7 +46,7 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
             ))}
         </select>
       </div>
-      <div>
+      <div className={styles.filtersInputNumber}>
         <input type="number" name="max-length" placeholder='Minimum length' onChange={(e) => setMaxLength(e.target.value)} />
         <input type="number" name="min-length" placeholder='High length' onChange={(e) => setMinLength(e.target.value)} />
       </div>
@@ -51,6 +54,7 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
         SEARCH
       </button>
     </form>
+    </>
   )
 }
 

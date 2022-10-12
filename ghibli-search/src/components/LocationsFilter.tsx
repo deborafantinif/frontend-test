@@ -6,6 +6,7 @@ import { ILocation, ILocationsFilterProps } from '../interfaces/propsComponents'
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocationsByFilters } from '../redux/actions/locationsAction';
+import styles from '../styles/Filters.module.css'
 
 function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, requestWithFilter}: ILocationsFilterProps) {
   const [locationName, setLocationName] = useState('');
@@ -36,10 +37,12 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
     filteringLocations()
   }
   return (
-    <form>
+    <>
+      <div className={styles.backgroundFilters}></div>
+      <form className={styles.filtersForm}>
       <input type="text" name="name" placeholder='Search by name' onChange={(e) => setLocationName(e.target.value)} />
-      <div>
-        <label htmlFor="climate">Search by climate</label>
+      <div className={styles.filtersSelect}>
+        <label htmlFor="climate">Search by climate:</label>
         <select name="climate" id="climate" onChange={(e) => setClimateName(e.target.value)}>
           <option value='none'></option>
           { locationsUniqClimate.map((climate) => (
@@ -47,8 +50,8 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="terrain">Search by terrain</label>
+      <div className={styles.filtersSelect}>
+        <label htmlFor="terrain">Search by terrain:</label>
         <select name="terrain" id="terrain" onChange={(e) => setTerrainName(e.target.value)}>
           <option value='none'></option>
           { locationsUniqTerrain.map((terrain) => (
@@ -56,7 +59,7 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
           ))}
         </select>
       </div>
-      <div>
+      <div className={styles.filtersInputNumber}>
         <input type="number" name="max-water" placeholder='Minimum water' onChange={(e) => setMinWater(e.target.value)} />
         <input type="number" name="min-water" placeholder='High water' onChange={(e) => setMaxWater(e.target.value)} />
       </div>
@@ -64,6 +67,7 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
         SEARCH
       </button>
     </form>
+    </>
   )
 }
 

@@ -6,6 +6,7 @@ import { IFilm, IFilmsFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilmsByFilters, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
+import styles from '../styles/Filters.module.css'
 
 function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLocations, requestWithFilter }: IFilmsFilterProps) {
   const [filmName, setFilmName] = useState('');
@@ -46,52 +47,109 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
     filteringFilms()
   }
   return (
-    <form>
-      <input type="text" name="title" placeholder='Search by film name' onChange={(e) =>setFilmName(e.target.value)} />
-      <div>
-        <label htmlFor="director">Search by director name</label>
-        <select name="director" id="director" onChange={(e) =>setDirectorName(e.target.value)}>
-          <option value='none'></option>
-          { directorsUniqName.map((director) => (
-            <option key={director} value={director}>{director}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="producer">Search by producer name</label>
-        <select name="producer" id="producer" onChange={(e) =>setProducerName(e.target.value)}>
-          <option value='none'></option>
-          { producersUniqName.map((producer) => (
-            <option key={producer} value={producer}>{producer}</option>
-          ))}       
-        </select>
-      </div>
-      <div>
-        <label htmlFor="location">Search by location name</label>
-        <select name="location" id="location" onChange={(e) =>setLocationName(e.target.value)}>
-          <option value='none'></option>
-          { allLocations.map((location) => (
-            <option key={location.id} value={location.name}>{location.name}</option>
-          ))}       
-        </select>
-      </div>
-      <div>
-        <input type="number" name="max-score" placeholder='Minimum score' onChange={(e) =>setMinScore(e.target.value)} />
-        <input type="number" name="min-score" placeholder='High name' onChange={(e) =>setMaxScore(e.target.value)} />
-      </div>
-      <div>
-        <input type="number" name="max-duration" placeholder='Minimum duration' onChange={(e) =>setMinDuration(e.target.value)} />
-        <input type="number" name="min-duration" placeholder='High duration' onChange={(e) =>setMaxDuration(e.target.value)} />
-      </div>
-      <div>
-        <input type="number" name="max-year" placeholder='Minimum year' onChange={(e) =>setMinYear(e.target.value)} />
-        <input type="number" name="min-year" placeholder='High year' onChange={(e) =>setMaxYear(e.target.value)} />
-      </div>
-      <button type='button' onClick={handleSendFilters}>
-        SEARCH
-      </button>
-    </form>
-  )
+    <>
+      <div className={styles.backgroundFilters}></div>
+      <form className={styles.filtersForm}>
+        <input
+          type="text"
+          className={styles.filtersInput}
+          name="title"
+          placeholder="Search by film name"
+          onChange={(e) => setFilmName(e.target.value)}
+        />
+        <div className={styles.filtersSelect}>
+          <label htmlFor="director">Search by director name:</label>
+          <select
+            name="director"
+            id="director"
+            onChange={(e) => setDirectorName(e.target.value)}
+          >
+            <option value="none"></option>
+            {directorsUniqName.map((director) => (
+              <option key={director} value={director}>
+                {director}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.filtersSelect}>
+          <label htmlFor="producer">Search by producer name:</label>
+          <select
+            name="producer"
+            id="producer"
+            onChange={(e) => setProducerName(e.target.value)}
+          >
+            <option value="none"></option>
+            {producersUniqName.map((producer) => (
+              <option key={producer} value={producer}>
+                {producer}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.filtersSelect}>
+          <label htmlFor="location">Search by location name:</label>
+          <select
+            name="location"
+            id="location"
+            onChange={(e) => setLocationName(e.target.value)}
+          >
+            <option value="none"></option>
+            {allLocations.map((location) => (
+              <option key={location.id} value={location.name}>
+                {location.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.filtersInputNumber}>
+          <input
+            type="number"
+            name="max-score"
+            placeholder="Minimum score"
+            onChange={(e) => setMinScore(e.target.value)}
+          />
+          <input
+            type="number"
+            name="min-score"
+            placeholder="High score"
+            onChange={(e) => setMaxScore(e.target.value)}
+          />
+        </div>
+        <div className={styles.filtersInputNumber}>
+          <input
+            type="number"
+            name="max-duration"
+            placeholder="Minimum duration"
+            onChange={(e) => setMinDuration(e.target.value)}
+          />
+          <input
+            type="number"
+            name="min-duration"
+            placeholder="High duration"
+            onChange={(e) => setMaxDuration(e.target.value)}
+          />
+        </div>
+        <div className={styles.filtersInputNumber}>
+          <input
+            type="number"
+            name="max-year"
+            placeholder="Minimum year"
+            onChange={(e) => setMinYear(e.target.value)}
+          />
+          <input
+            type="number"
+            name="min-year"
+            placeholder="High year"
+            onChange={(e) => setMaxYear(e.target.value)}
+          />
+        </div>
+        <button type="button" onClick={handleSendFilters}>
+          SEARCH
+        </button>
+      </form>
+    </>
+  );
 }
 
 const mapState = (state: IRootState) => ({

@@ -7,6 +7,7 @@ import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeopleByFilters } from '../redux/actions/peopleAction';
+import styles from '../styles/Filters.module.css'
 
 function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLocations, requestWithFilter}: IPeopleFilterProps) {
   const [peopleName, setPeopleName] = useState('');
@@ -38,14 +39,16 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
     filteringFilms()
   }
   return (
-    <form>
-      <input type="text" name="name" placeholder='Search by name' onChange={(e) =>setPeopleName(e.target.value)} />
-      <div>
+    <>
+      <div className={styles.backgroundFilters}></div>
+      <form className={styles.filtersForm}>
+      <input type="text" name="name" className={styles.filtersInput} placeholder='Search by name' onChange={(e) =>setPeopleName(e.target.value)} />
+      <div className={styles.filtersInputNumber}>
         <input type="number" name="max-age" placeholder='Minimum age' onChange={(e) =>setMinAge(e.target.value)} />
         <input type="number" name="min-agr" placeholder='High age' onChange={(e) =>setMaxAge(e.target.value)} />
       </div>
-      <div>
-        <label htmlFor="eye-color">Search by eye color</label>
+      <div className={styles.filtersSelect}>
+        <label htmlFor="eye-color">Search by eye color:</label>
         <select name="eye-color" id="eye-color" onChange={(e) => setEyeColorName(e.target.value)}>
           <option value='none'></option>
           { peopleUniqEyeColor.map((eyeColor, index) => (
@@ -53,8 +56,8 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="hair-color">Search by hair color</label>
+      <div className={styles.filtersSelect}>
+        <label htmlFor="hair-color">Search by hair color:</label>
         <select name="hair-color" id="hair-color" onChange={(e) => setHairColorName(e.target.value)}>
           <option value='none'></option>
           { peopleUniqHairColor.map((hairColor, index) => (
@@ -66,6 +69,7 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
         SEARCH
       </button>
     </form>
+    </>
   )
 }
 

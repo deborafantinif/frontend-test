@@ -6,6 +6,7 @@ import { ISpecie, ISpeciesFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getSpeciesByFilters } from '../redux/actions/speciesAction';
+import styles from '../styles/Filters.module.css'
 
 function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter, allSpecies}: ISpeciesFilterProps) {
   const [speciesName, setSpeciesName] = useState('');
@@ -29,7 +30,9 @@ function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter,
   }
 
   return (
-    <form>
+    <>
+      <div className={styles.backgroundFilters}></div>
+      <form className={styles.filtersForm}>
       <input type="text" name="name" placeholder='Search by name' onChange={(e) => setSpeciesName(e.target.value)} />
       <input type="text" name="eye-color" placeholder='Search by eye color' onChange={(e) => setEyeColorName(e.target.value)} />
       <input type="text" name="hair-color" placeholder='Search by hair color' onChange={(e) => setHairColorName(e.target.value)} />
@@ -37,6 +40,7 @@ function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter,
         SEARCH
       </button>
     </form>
+    </>
   )
 }
 

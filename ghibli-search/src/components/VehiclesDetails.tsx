@@ -9,6 +9,8 @@ import { getFilms } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
+import styles from '../styles/Details.module.css';
+import { Loading } from './Loading';
 
 function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies, fetchPeople, allLocations, allPeople}: IVehiclesDetailsProps) {
   const [vehicle, setVehicle] = useState<IVehicle>({} as IVehicle);
@@ -57,8 +59,9 @@ function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies,
   }
 
   return (
-    <main>
-      <section>
+    (!vehicle.name) ? <Loading/> : (
+      <main className={styles.main}>
+      <section className={styles.info}>
         <div>
           <h2>{vehicle.name}</h2>
           <p>Classe:
@@ -75,8 +78,10 @@ function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies,
           </p>
         </div>
       </section>
-      <div>
+      { films.length > 0 ? (
+        <div className={styles.content}>
         <h3>Films</h3>
+        <div className={styles.cardsMovie}>
         { films.map((film) => (
           <div key={film.id}>
             <h4>{film.title}</h4>
@@ -101,10 +106,13 @@ function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies,
             </p>
           </div>
         ))}
+        </div>
       </div>
+      ): null}
       { people.length > 0 ? (
-        <div>
+        <div className={styles.content}>
         <h3>Pilot</h3>
+        <div className={styles.cards}>
         { people.map((person) => (
           <div key={person.id}>
             <h4>{person.name}</h4>
@@ -124,11 +132,13 @@ function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies,
             </p>
           </div>
         ))}
+        </div>
       </div>
       ) : null }
       { locations.length > 0 ? (
-        <div>
+        <div className={styles.content}>
         <h3>Locations</h3>
+        <div className={styles.cards}>
         { locations.map((location) => (
           <div key={location.id}>
             <h4>{location.name}</h4>
@@ -146,9 +156,11 @@ function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies,
             </p>
           </div>
         ))}
+        </div>
       </div>
       ) : null }
     </main>
+    )
   )
 }
 

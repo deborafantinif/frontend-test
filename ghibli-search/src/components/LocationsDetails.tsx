@@ -9,6 +9,8 @@ import { getFilms } from '../redux/actions/filmsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
+import styles from '../styles/Details.module.css';
+import { Loading } from './Loading';
 
 function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fetchPeople, allSpecies, allPeople, allVehicles}: ILocationDetailsProps) {
   const [location, setLocation] = useState<ILocation>({} as ILocation);
@@ -23,7 +25,6 @@ function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, 
       await fetchVehicles()
       await fetchPeople()
       const responseLocation = await fetchLocationById(id);
-      console.log(responseLocation)
       setLocation(responseLocation);
     };
     fetchData()
@@ -70,8 +71,9 @@ function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, 
   }
 
   return (
-    <main>
-      <section>
+    (!location.climate) ? <Loading/> : (
+      <main className={styles.main}>
+      <section className={styles.info}>
         <div>
           <h2>{location.name}</h2>
           <p>Climate:
@@ -88,36 +90,44 @@ function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, 
           </p>
         </div>
       </section>
-      <div>
+      { films.length > 0 ? (
+        <div className={styles.content}>
         <h3>Films</h3>
+        <div className={styles.cardsMovie}>
         { films.map((film) => (
           <div key={film.id}>
             <h4>{film.title}</h4>
+            <span>{film.original_title} - </span>
             <span>{film.release_date}</span>
-            <span>{film.original_title}</span>
-            <p>{film.rt_score}</p>
-            <p>Duration:
+            <p><b>Score:</b>
+              {' '}
+              {film.rt_score}
+            </p>
+            <p><b>Duration:</b>
               {' '}
               {film.running_time}
             </p>
-            <p>Director:
+            <p><b>Director:</b>
               {' '}
               {film.director}
             </p>
-            <p>Producer:
+            <p><b>Producer:</b>
               {' '}
               {film.producer}
             </p>
-            <p>Description:
+            <p><b>Description:</b>
               {' '}
               {film.description}
             </p>
           </div>
         ))}
+        </div>
       </div>
+      ): null}
       { people.length > 0 ? (
-        <div>
+        <div className={styles.content}>
         <h3>People</h3>
+        <div className={styles.cards}>
         { people.map((person) => (
           <div key={person.id}>
             <h4>{person.name}</h4>
@@ -137,10 +147,13 @@ function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, 
             </p>
           </div>
         ))}
+        </div>
       </div>
       ) : null }
-      <div>
+      { vehicles.length > 0 ? (
+        <div className={styles.content}>
         <h3>Vehicles</h3>
+        <div className={styles.cards}>
         {vehicles.map((vehicle) => (
           <div key={vehicle.id}>
             <h3>{vehicle.name}</h3>
@@ -158,8 +171,11 @@ function LocationDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, 
             </p>
           </div>
         ))}
-      </div> 
+        </div>
+      </div>
+      ): null}
     </main>
+    )
   )
 }
 

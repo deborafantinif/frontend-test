@@ -18,7 +18,6 @@
   border-radius: 5px 5px 0 0;
   padding: 15px;
   height: 45%;
-  /* position: absolute; */
 }
 
 .score {
@@ -43,7 +42,6 @@
   display: inline;
   font-size: 10px;
   color: var(--blue-700);
-  /* text-shadow: 1px 1px 2px var(--gray-600); */
 }
 
 .title p {

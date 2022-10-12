@@ -9,6 +9,8 @@ import { getFilms } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
+import styles from '../styles/Details.module.css';
+import { Loading } from './Loading';
 
 function SpeciesDetails({id, allFilms, fetchFilm, fetchLocations, fetchVehicles, fetchPeople, allLocations, allPeople, allVehicles}: ISpeciesDetailsProps) {
   const [specie, setSpecie] = useState<ISpecie>({} as ISpecie);
@@ -66,120 +68,86 @@ function SpeciesDetails({id, allFilms, fetchFilm, fetchLocations, fetchVehicles,
     setLocations(filteredLocations);
   }
 
-  return (
-    <main>
-      <section>
+  return !specie.name ? (
+    <Loading />
+  ) : (
+    <main className={styles.main}>
+      <section className={styles.info}>
         <div>
           <h2>{specie.name}</h2>
-          <p>Classification:
-            {' '}
-            {specie.classification}
-          </p>
-          <p>Eye Colors:
-            {' '}
-            {specie.eye_colors}
-          </p>
-          <p>Hair Colors:
-            {' '}
-            {specie.hair_colors}
-          </p>
+          <p>Classification: {specie.classification}</p>
+          <p>Eye Colors: {specie.eye_colors}</p>
+          <p>Hair Colors: {specie.hair_colors}</p>
         </div>
       </section>
-      <div>
-        <h3>Films</h3>
-        { films.map((film) => (
-          <div key={film.id}>
-            <h4>{film.title}</h4>
-            <span>{film.release_date}</span>
-            <span>{film.original_title}</span>
-            <p>{film.rt_score}</p>
-            <p>Duration:
-              {' '}
-              {film.running_time}
-            </p>
-            <p>Director:
-              {' '}
-              {film.director}
-            </p>
-            <p>Producer:
-              {' '}
-              {film.producer}
-            </p>
-            <p>Description:
-              {' '}
-              {film.description}
-            </p>
+      {films.length > 0 ? (
+        <div className={styles.content}>
+          <h3>Films</h3>
+          <div className={styles.cardsMovie}>
+            {films.map((film) => (
+              <div key={film.id}>
+                <h4>{film.title}</h4>
+                <span>{film.release_date}</span>
+                <span>{film.original_title}</span>
+                <p>{film.rt_score}</p>
+                <p>Duration: {film.running_time}</p>
+                <p>Director: {film.director}</p>
+                <p>Producer: {film.producer}</p>
+                <p>Description: {film.description}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      { people.length > 0 ? (
-        <div>
-        <h3>People</h3>
-        { people.map((person) => (
-          <div key={person.id}>
-            <h4>{person.name}</h4>
-            <span>{person.gender}</span>
-            <p>{person.age}</p>
-            <p>Age:
-              {' '}
-              {person.age}
-            </p>
-            <p>Eye Color:
-              {' '}
-              {person.eye_color}
-            </p>
-            <p>Hair Color:
-              {' '}
-              {person.hair_color}
-            </p>
+        </div>
+      ) : null}
+      {people.length > 0 ? (
+        <div className={styles.content}>
+          <h3>People</h3>
+          <div className={styles.cards}>
+            {people.map((person) => (
+              <div key={person.id}>
+                <h4>{person.name}</h4>
+                <span>{person.gender}</span>
+                <p>{person.age}</p>
+                <p>Age: {person.age}</p>
+                <p>Eye Color: {person.eye_color}</p>
+                <p>Hair Color: {person.hair_color}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      ) : null }
-      <div>
-        <h3>Vehicles</h3>
-        {vehicles.map((vehicle) => (
-          <div key={vehicle.id}>
-            <h3>{vehicle.name}</h3>
-            <p>Classification:
-              {' '}
-              {vehicle.vehicle_class}
-            </p>
-            <p>Length:
-              {' '}
-              {vehicle.length}
-            </p>
-            <p>Description:
-              {' '}
-              {vehicle.description}
-            </p>
+        </div>
+      ) : null}
+      {vehicles.length > 0 ? (
+        <div className={styles.content}>
+          <h3>Vehicles</h3>
+          <div className={styles.cards}>
+            {vehicles.map((vehicle) => (
+              <div key={vehicle.id}>
+                <h3>{vehicle.name}</h3>
+                <p>Classification: {vehicle.vehicle_class}</p>
+                <p>Length: {vehicle.length}</p>
+                <p>Description: {vehicle.description}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div> 
-      { locations.length > 0 ? (
-        <div>
-        <h3>Locations</h3>
-        { locations.map((location) => (
-          <div key={location.id}>
-            <h4>{location.name}</h4>
-            <p>Climate:
-              {' '}
-              {location.climate}
-            </p>
-            <p>Terrain:
-              {' '}
-              {location.terrain}
-            </p>
-            <p>Surface Water:
-              {' '}
-              {location.surface_water}
-            </p>
+        </div>
+      ) : null}
+      {locations.length > 0 ? (
+        <div className={styles.content}>
+          <h3>Locations</h3>
+          <div className={styles.cards}>
+            {locations.map((location) => (
+              <div key={location.id}>
+                <h4>{location.name}</h4>
+                <p>Climate: {location.climate}</p>
+                <p>Terrain: {location.terrain}</p>
+                <p>Surface Water: {location.surface_water}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      ) : null }
+        </div>
+      ) : null}
     </main>
-  )
+  );
 }
 
 const mapState = (state: IRootState) => ({

@@ -9,8 +9,10 @@ import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
+import styles from '../styles/FilmDetails.module.css';
+import { Loading } from './Loading';
 
-function FilmsDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IFilmDetailsProps) {
+function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IFilmDetailsProps) {
   const [film, setFilm] = useState<IFilm>({} as IFilm);
   const [people, setPeople] = useState<IPerson[]>([] as IPerson[]);
   const [locations, setLocations] = useState<ILocation[]>([] as ILocation[]);
@@ -76,103 +78,75 @@ function FilmsDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, 
     setVehicles(vehicleWithPilotName);
   }
 
-  return (
-    <main>
-      <section>
-        <div>
+  return !film.title ? (
+    <Loading />
+  ) : (
+    <main className={styles.film}>
+      <section className={styles.info}>
+        <div className={styles.title}>
           <h2>{film.title}</h2>
-          <p>{film.original_title}</p>
           <span>{film.release_date}</span>
-          <p>Duration:
-            {' '}
-            {film.running_time}
-          </p>
-          <p>Director:
-            {' '}
-            {film.director}
-          </p>
-          <p>Producer:
-            {' '}
-            {film.producer}
-          </p>
+          <p>{film.original_title}</p>
         </div>
-        <p>{film.rt_score}</p>
+        <p><b>Duration:</b> {film.running_time}</p>
+        <p><b>Director:</b> {film.director}</p>
+        <p><b>Producer:</b> {film.producer}</p>
+      <p className={styles.score}>{film.rt_score}</p>
       </section>
-      <div>
+      <div className={styles.description}>
         <h3>Description</h3>
         <p>{film.description}</p>
       </div>
-      <div>
-        <h3>People</h3>
-        {people.map((person) => (
-          <div key={person.id}>
-            <p>{person.name}</p>
-            <span>{person.gender}</span>
-            <p>Age:
-              {' '}
-              {person.age}
-            </p>
-            <p>Specie:
-              {' '}
-              {person.species}
-            </p>
-            <p>Eye Color:
-              {' '}
-              {person.eye_color}
-            </p>
-            <p>Hair Color:
-              {' '}
-              {person.hair_color}
-            </p>
+      {people.length > 0 ? (
+        <div className={styles.content}>
+          <h3>People</h3>
+          <div className={styles.cards}>
+          {people.map((person) => (
+            <div key={person.id}>
+              <h4>{person.name}</h4>
+              <span>{person.gender}</span>
+              <p><b>Age:</b> {person.age}</p>
+              <p><b>Specie:</b> {person.species}</p>
+              <p><b>Eye Color:</b> {person.eye_color}</p>
+              <p><b>Hair Color:</b> {person.hair_color}</p>
+            </div>
+          ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <h3>Locations</h3>
-        {locations.map((location) => (
-          <div key={location.id}>
-            <p>{location.name}</p>
-            <p>Climate:
-              {' '}
-              {location.climate}
-            </p>
-            <p>Terrain:
-              {' '}
-              {location.terrain}
-            </p>
-            <p>Surface Water:
-              {' '}
-              {location.surface_water}
-            </p>
+        </div>
+      ) : null}
+      {locations.length > 0 ? (
+        <div className={styles.content}>
+          <h3>Locations</h3>
+          <div className={styles.cards}>
+          {locations.map((location) => (
+            <div key={location.id}>
+              <h4>{location.name}</h4>
+              <p><b>Climate:</b> {location.climate}</p>
+              <p><b>Terrain:</b> {location.terrain}</p>
+              <p><b>Surface Water:</b> {location.surface_water}</p>
+            </div>
+          ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <h3>Vehicles</h3>
-        {vehicles.map((vehicle) => (
-          <div key={vehicle.id}>
-            <h3>{vehicle.name}</h3>
-            <p>Classification:
-              {' '}
-              {vehicle.vehicle_class}
-            </p>
-            <p>Length:
-              {' '}
-              {vehicle.length}
-            </p>
-            <p>Pilot:
-              {' '}
-              {vehicle.pilot}
-            </p>
-            <p>Description:
-              {' '}
-              {vehicle.description}
-            </p>
+        </div>
+      ) : null}
+      {vehicles.length > 0 ? (
+        <div className={styles.content}>
+          <h3>Vehicles</h3>
+          <div className={styles.cards}>
+          {vehicles.map((vehicle) => (
+            <div key={vehicle.id}>
+              <h4>{vehicle.name}</h4>
+              <p><b>Classification:</b> {vehicle.vehicle_class}</p>
+              <p><b>Length:</b> {vehicle.length}</p>
+              <p><b>Pilot:</b> {vehicle.pilot}</p>
+              <p><b>Description:</b> {vehicle.description}</p>
+            </div>
+          ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ) : null}
     </main>
-  )
+  );
 }
 
 const mapState = (state: IRootState) => ({
@@ -189,4 +163,4 @@ const mapDispatch = (dispatch: ThunkDispatch<null, null, AnyAction>) => ({
   fetchLocation: () => dispatch(getLocations()),
 });
 
-export default connect(mapState, mapDispatch)(FilmsDetails)
+export default connect(mapState, mapDispatch)(FilmDetails)

@@ -9,6 +9,8 @@ import { getFilms } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getSpecies } from '../redux/actions/speciesAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
+import styles from '../styles/Details.module.css';
+import { Loading } from './Loading';
 
 function PeopleDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IPeopleDetailsProps) {
   const [person, setPerson] = useState<IPerson>({} as IPerson);
@@ -55,28 +57,28 @@ function PeopleDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fe
   }
 
   return (
-    <main>
-      <section>
-        <div>
+    (!person.name) ? <Loading/> : (
+      <main className={styles.main}>
+      <section className={styles.info}>
           <h2>{person.name}</h2>
           <span>{person.gender}</span>
-          <p>Age:
+          <p><b>Age:</b>
             {' '}
             {person.age}
           </p>
-          <p>Eye Color:
+          <p><b>Eye Color:</b>
             {' '}
             {person.eye_color}
           </p>
-          <p>Hair Color:
+          <p><b>Hair Color:</b>
             {' '}
             {person.hair_color}
           </p>
-        </div>
       </section>
       { specie.length > 0 ? (
-        <div>
+        <div className={styles.content}>
         <h3>Specie</h3>
+        <div className={styles.cards}>
         {specie.map((specie) => (
         <div key={specie.id}>
           <p>{specie.name}</p>
@@ -94,9 +96,11 @@ function PeopleDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fe
           </p>
         </div>
         ))} 
+        </div>
       </div>
       ) : null }
-      <div>
+      { locations.length > 0 ? (
+        <div>
         <h3>Locations</h3>
         {locations.map((location) => (
           <div key={location.id}>
@@ -116,7 +120,9 @@ function PeopleDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fe
           </div>
         ))}
       </div>
-      <div>
+      ) : null}
+      { vehicles.length > 0 ? (
+        <div>
         <h3>Vehicles</h3>
         {vehicles.map((vehicle) => (
           <div key={vehicle.id}>
@@ -140,7 +146,9 @@ function PeopleDetails({id, allFilms, fetchFilm, fetchSpecies, fetchVehicles, fe
           </div>
         ))}
       </div> 
+      ) : null}
     </main>
+    )
   )
 }
 

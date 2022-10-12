@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { fetchFilms } from "../../api/ghibliApi";
-import { IFilm } from "../../interfaces/propsComponents";
+import { IFilm } from "../../interfaces/endpoints";
 import { FAILED_REQUEST, GET_FILMS_BY_FILTERS, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from "./actionTypes";
 
 const requestFilms = () => ({

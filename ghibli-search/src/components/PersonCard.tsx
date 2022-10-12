@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IPersonProps } from '../interfaces/propsComponents';
 import styles from '../styles/Card.module.css';
 
-export function CardPerson({person}: IPersonProps) {
+export function PersonCard({person}: IPersonProps) {
   const navigate = useNavigate();
   return (
     <section className={`${styles.card} ${styles.cardPerson}`}>
@@ -11,27 +11,18 @@ export function CardPerson({person}: IPersonProps) {
       <span className={styles.gender}>{person.gender}</span>
       <div>
         <p>
-          <b>Idade:</b>
-          {" "}
-          {person.age}
+          <b>Idade:</b> {person.age}
         </p>
         <p>
-          <b>Eye color:</b>
-          {" "}
-          {person.eye_color}
+          <b>Eye color:</b> {person.eye_color}
         </p>
         <p>
-          <b>Hair color:</b>
-          {" "}
-          {person.hair_color}
+          <b>Hair color:</b> {person.hair_color}
         </p>
       </div>
-      <button
-        type="button"
-        onClick={ () => navigate(`/people/${person.id}`) }
-      >
+      <button type="button" onClick={() => navigate(`/people/${person.id}`)}>
         READ MORE...
       </button>
     </section>
-  )
+  );
 }

@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { fetchLocationById } from '../api/ghibliApi';
-import { IFilm, ILocation, ILocationDetailsProps, IPerson, IVehicle } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, IVehicle } from '../interfaces/endpoints';
+import { ILocationDetailsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms } from '../redux/actions/filmsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
-import { getVehicles } from '../redux/actions/vehiclesAction';
+import { getVehicles } from "../redux/actions/vehiclesAction";
 import styles from '../styles/Details.module.css';
 import { Loading } from './Loading';
 

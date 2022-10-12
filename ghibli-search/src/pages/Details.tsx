@@ -6,10 +6,11 @@ import LocationsDetails from '../components/LocationsDetails';
 import PeopleDetails from '../components/PeopleDetails';
 import SpeciesDetails from '../components/SpeciesDetails';
 import VehiclesDetails from '../components/VehiclesDetails';
-import { IDetails } from '../interfaces/propsComponents';
+import { IDetailsProps } from '../interfaces/propsComponents';
 
-export function Details({endpoint}: IDetails) {
+export function Details({endpoint}: IDetailsProps) {
   const {id} = useParams();
+
   function renderSwitch(param: string) {
     switch(param) {
       case 'film':
@@ -26,10 +27,11 @@ export function Details({endpoint}: IDetails) {
         return <p>None</p>
     }
   }
+
   return (
-    <div>
+    <>
       <HeaderDetails/>
       {renderSwitch(endpoint)}
-    </div>
+    </>
   )
 }

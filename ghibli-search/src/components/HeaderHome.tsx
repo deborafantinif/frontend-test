@@ -3,14 +3,7 @@ import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import {
-  IFilm,
-  IHeaderHomeProps,
-  ILocation,
-  IPerson,
-  ISpecie,
-  IVehicle,
-} from "../interfaces/propsComponents";
+import {IHeaderHomeProps} from "../interfaces/propsComponents";
 import { IRootState } from "../interfaces/state";
 import { getFilmsByTitle, handleMoreFilters } from "../redux/actions/filmsAction";
 import { getLocationByName } from "../redux/actions/locationsAction";
@@ -24,6 +17,7 @@ import PeopleFilter from "./PeopleFilter";
 import SpeciesFilter from "./SpeciesFilter";
 import VehiclesFilter from "./VehiclesFilter";
 import styles from '../styles/HeaderHome.module.css'
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from "../interfaces/endpoints";
 
 function HeaderHome({
   allFilms,

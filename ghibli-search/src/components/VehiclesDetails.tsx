@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { fetchVehicleById } from '../api/ghibliApi';
-import { IFilm, ILocation, IPerson, IVehicle, IVehiclesDetailsProps } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, IVehicle } from '../interfaces/endpoints';
+import { IVehiclesDetailsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
-import styles from '../styles/Details.module.css';
+import styles from "../styles/Details.module.css";
 import { Loading } from './Loading';
 
 function VehiclesDetails({id, allFilms, fetchFilm, fetchLocations, fetchSpecies, fetchPeople, allLocations, allPeople}: IVehiclesDetailsProps) {

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IFilm, IFilmsFilterProps } from '../interfaces/propsComponents';
+import { IFilm } from '../interfaces/endpoints';
+import { IFilmsFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilmsByFilters, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
@@ -144,7 +145,11 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
             onChange={(e) => setMaxYear(e.target.value)}
           />
         </div>
-        <button data-cy="submit-filters" type="button" onClick={handleSendFilters}>
+        <button
+          data-cy="submit-filters"
+          type="button"
+          onClick={handleSendFilters}
+        >
           SEARCH
         </button>
       </form>

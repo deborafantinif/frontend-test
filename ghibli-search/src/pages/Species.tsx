@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { CardSpecie } from '../components/CardSpecie';
+import { SpecieCard } from '../components/SpecieCard';
 import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { ISpeciesProps } from '../interfaces/propsComponents';
@@ -14,14 +14,16 @@ function Species({ fetchSpecies, species, loading, error }: ISpeciesProps) {
   useEffect(() => {
     fetchSpecies()
   }, [])
+
   if (error.length > 1) console.error(error);
+
   return (
     <div>
       <HeaderHome endpoint='species'/>
       <div className={styles.cards}>
         { (loading) ?
           <Loading/> :
-          species.map((specie) => <CardSpecie key={specie.id} specie={specie} /> ) }
+          species.map((specie) => <SpecieCard key={specie.id} specie={specie} /> ) }
       </div>
     </div>
   )

@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { fetchFilmsById } from '../api/ghibliApi';
-import { IFilm, IFilmDetailsProps, ILocation, IPerson, IVehicle } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, IVehicle } from '../interfaces/endpoints';
+import { IFilmDetailsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getSpecies } from '../redux/actions/speciesAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
-import styles from '../styles/FilmDetails.module.css';
+import styles from "../styles/FilmDetails.module.css";
 import { Loading } from './Loading';
 
 function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, fetchLocation, allSpecies, allLocations, allVehicles}: IFilmDetailsProps) {
@@ -88,7 +89,7 @@ function FilmDetails({id, allPeople, fetchPeople, fetchSpecies, fetchVehicles, f
           <span>{film.release_date}</span>
           <p>{film.original_title}</p>
         </div>
-        <p><b>Duration:</b> {film.running_time}</p>
+        <p><b>Duration:</b> {film.running_time} minutes</p>
         <p><b>Director:</b> {film.director}</p>
         <p><b>Producer:</b> {film.producer}</p>
       <p className={styles.score}>{film.rt_score}</p>

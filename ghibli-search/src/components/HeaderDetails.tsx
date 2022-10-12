@@ -5,8 +5,8 @@ import styles from '../styles/HeaderDetails.module.css'
 export function HeaderDetails() {
   return (
     <header className={styles.header}>
-      <Menu/>
+      <Menu />
       <h1>GHIBLI SEARCH</h1>
     </header>
-  )
+  );
 }

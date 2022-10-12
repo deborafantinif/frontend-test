@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IVehicle, IVehiclesFilterProps } from '../interfaces/propsComponents';
+import { IVehicle } from '../interfaces/endpoints';
+import { IVehiclesFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getVehiclesByFilters } from '../redux/actions/vehiclesAction';
@@ -36,26 +37,47 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
     <>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
-      <input type="text" name="name" placeholder='Search by name' onChange={(e) => setVehiclesName(e.target.value)} />
-      <div className={styles.filtersSelect}>
-        <label htmlFor="classification">Search by classification:</label>
-        <select name="classification" id="classification" onChange={(e) => setClassificationName(e.target.value)}>
-          <option value='none'></option>
-          { classificationsUniqName.map((classification) => (
-            <option key={classification} value={classification}>{classification}</option>
+        <input
+          type="text"
+          name="name"
+          placeholder="Search by name"
+          onChange={(e) => setVehiclesName(e.target.value)}
+        />
+        <div className={styles.filtersSelect}>
+          <label htmlFor="classification">Search by classification:</label>
+          <select
+            name="classification"
+            id="classification"
+            onChange={(e) => setClassificationName(e.target.value)}
+          >
+            <option value="none"></option>
+            {classificationsUniqName.map((classification) => (
+              <option key={classification} value={classification}>
+                {classification}
+              </option>
             ))}
-        </select>
-      </div>
-      <div className={styles.filtersInputNumber}>
-        <input type="number" name="max-length" placeholder='Minimum length' onChange={(e) => setMaxLength(e.target.value)} />
-        <input type="number" name="min-length" placeholder='High length' onChange={(e) => setMinLength(e.target.value)} />
-      </div>
-      <button type='button' onClick={handleSendVehicles}>
-        SEARCH
-      </button>
-    </form>
+          </select>
+        </div>
+        <div className={styles.filtersInputNumber}>
+          <input
+            type="number"
+            name="max-length"
+            placeholder="Minimum length"
+            onChange={(e) => setMaxLength(e.target.value)}
+          />
+          <input
+            type="number"
+            name="min-length"
+            placeholder="High length"
+            onChange={(e) => setMinLength(e.target.value)}
+          />
+        </div>
+        <button type="button" onClick={handleSendVehicles}>
+          SEARCH
+        </button>
+      </form>
     </>
-  )
+  );
 }
 
 const mapState = (state: IRootState) => ({

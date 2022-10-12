@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { IPeopleFilterProps, IPerson } from '../interfaces/propsComponents';
+import { IPerson } from '../interfaces/endpoints';
+import { IPeopleFilterProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms, handleMoreFilters } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
@@ -16,9 +17,9 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
   const [eyeColorName, setEyeColorName] = useState('');
   const [hairColorName, setHairColorName] = useState('');
   useEffect(() => {
-    fetchLocations()
-    fetchFilms()
-  }, [])
+    fetchLocations();
+    fetchFilms();
+  }, []);
 
   const peopleEyeColor = allPeople.map((person) => person.eye_color);
   const peopleUniqEyeColor = [ ...new Set(peopleEyeColor)];

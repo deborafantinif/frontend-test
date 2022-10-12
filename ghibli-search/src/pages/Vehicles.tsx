@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { CardVehicle } from '../components/CardVehicles';
+import { VehicleCard } from '../components/VehicleCard';
 import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { IVehiclesProps } from '../interfaces/propsComponents';
@@ -14,14 +14,16 @@ function Vehicles({ fetchVehicles, vehicles, loading, error }: IVehiclesProps) {
   useEffect(() => {
     fetchVehicles()
   }, [])
+
   if (error.length > 1) console.error(error);
+
   return (
     <div>
       <HeaderHome endpoint='vehicles'/>
       <div className={styles.cards}>
         { (loading) ?
           <Loading/> :
-          vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} /> ) }
+          vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} /> ) }
       </div>
     </div>
   )

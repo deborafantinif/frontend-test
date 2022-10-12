@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { CardLocation } from '../components/CardLocation';
+import { LocationCard } from '../components/LocationCard';
 import HeaderHome from '../components/HeaderHome';
 import { Loading } from '../components/Loading';
 import { ILocationsProps } from '../interfaces/propsComponents';
@@ -14,14 +14,16 @@ function Locations({ fetchLocations, locations, loading, error }: ILocationsProp
   useEffect(() => {
     fetchLocations()
   }, [])
+
   if (error.length > 1) console.error(error);
+
   return (
     <div>
       <HeaderHome endpoint='locations'/>
       <div className={styles.cards}>
         { (loading) ?
           <Loading/> :
-          locations.map((location) => <CardLocation key={location.id} location={location} /> ) }
+          locations.map((location) => <LocationCard key={location.id} location={location} /> ) }
       </div>
     </div>
   )

@@ -1,3 +1,5 @@
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from "./endpoints";
+
 export interface IHeaderHomeProps {
   endpoint: string,
   isMoreFiltersSelected: boolean,
@@ -16,17 +18,16 @@ export interface IHeaderHomeProps {
 
 export interface IFilterProps {
   setIsMoreFiltersSelected(isSelected: boolean): void,
+  allFilms: IFilm[],
 }
 
 export interface IFilmsFilterProps extends IFilterProps {
-  allFilms: IFilm[],
   allLocations: ILocation[],
   fetchLocations(): void,
   requestWithFilter(films: IFilm[]): void,
 }
 
 export interface IPeopleFilterProps extends IFilterProps {
-  allFilms: IFilm[],
   allLocations: ILocation[],
   allPeople: IPerson[],
   fetchLocations(): void,
@@ -35,48 +36,29 @@ export interface IPeopleFilterProps extends IFilterProps {
 }
 
 export interface ILocationsFilterProps extends IFilterProps {
-  allFilms: IFilm[],
   allLocations: ILocation[],
   fetchFilms(): void,
   requestWithFilter(locations: ILocation[]): void,
 }
 
 export interface ISpeciesFilterProps extends IFilterProps {
-  allFilms: IFilm[],
   allSpecies: ISpecie[],
   fetchFilms(): void,
   requestWithFilter(species: ISpecie[]): void,
 }
 
 export interface IVehiclesFilterProps extends IFilterProps {
-  allFilms: IFilm[],
   allVehicles: IVehicle[],
   fetchFilms(): void,
   requestWithFilter(vehicles: IVehicle[]): void,
 }
 
-interface IDefaultProps {
+interface IDefaultEndpointsProps {
   loading: boolean,
   error: string,
 }
 
-export interface IFilm {
-  id: string,
-  title: string,
-  original_title: string,
-  description: string,
-  director: string,
-  producer: string,
-  release_date: string,
-  running_time: string,
-  rt_score: string,
-  people: string[],
-  locations: string[],
-  vehicles: string[],
-  url: string,
-}
-
-export interface IFilmsProps extends IDefaultProps {
+export interface IFilmsProps extends IDefaultEndpointsProps {
   films: IFilm[],
   fetchFilms(): void,
 }
@@ -85,19 +67,7 @@ export interface IFilmProps {
   film: IFilm,
 }
 
-export interface IPerson {
-  id: string,
-  name: string,
-  gender: string,
-  age: string,
-  eye_color: string,
-  hair_color: string,
-  films: string[],
-  species: string,
-  url: string,
-}
-
-export interface IPeopleProps extends IDefaultProps {
+export interface IPeopleProps extends IDefaultEndpointsProps {
   people: IPerson[],
   fetchPeople(): void,
 }
@@ -106,18 +76,7 @@ export interface IPersonProps {
   person: IPerson,
 }
 
-export interface ILocation {
-  id: string,
-  name: string,
-  climate: string,
-  terrain: string,
-  surface_water: string,
-  residents: string[],
-  films: string[],
-  url: string,
-}
-
-export interface ILocationsProps extends IDefaultProps {
+export interface ILocationsProps extends IDefaultEndpointsProps {
   locations: ILocation[],
   fetchLocations(): void,
 }
@@ -126,18 +85,7 @@ export interface ILocationProps {
   location: ILocation,
 }
 
-export interface ISpecie {
-  id: string,
-  name: string,
-  classification: string,
-  eye_colors: string,
-  hair_colors: string,
-  people: string[],
-  films: string[],
-  url: string,
-}
-
-export interface ISpeciesProps extends IDefaultProps {
+export interface ISpeciesProps extends IDefaultEndpointsProps {
   species: ISpecie[],
   fetchSpecies(): void,
 }
@@ -146,18 +94,7 @@ export interface ISpecieProps {
   specie: ISpecie,
 }
 
-export interface IVehicle {
-  id: string,
-  name: string,
-  description: string,
-  vehicle_class: string,
-  length: string,
-  pilot: string,
-  films: string[],
-  url: string,
-}
-
-export interface IVehiclesProps extends IDefaultProps {
+export interface IVehiclesProps extends IDefaultEndpointsProps {
   vehicles: IVehicle[],
   fetchVehicles(): void,
 }
@@ -166,12 +103,15 @@ export interface IVehicleProps {
   vehicle: IVehicle,
 }
 
-export interface IDetails {
+export interface IDetailsProps {
   endpoint: string,
 }
 
-export interface IFilmDetailsProps {
+export interface IDefaultDetailsProps {
   id: string,
+}
+
+export interface IFilmDetailsProps extends IDefaultDetailsProps {
   allPeople: IPerson[],
   allSpecies: ISpecie[],
   allVehicles: IVehicle[],
@@ -182,8 +122,7 @@ export interface IFilmDetailsProps {
   fetchLocation(): void;
 }
 
-export interface IPeopleDetailsProps {
-  id: string,
+export interface IPeopleDetailsProps extends IDefaultDetailsProps {
   allFilms: IFilm[],
   allSpecies: ISpecie[],
   allVehicles: IVehicle[],
@@ -194,8 +133,7 @@ export interface IPeopleDetailsProps {
   fetchLocation(): void;
 }
 
-export interface ILocationDetailsProps {
-  id: string,
+export interface ILocationDetailsProps extends IDefaultDetailsProps {
   allFilms: IFilm[],
   allSpecies: ISpecie[],
   allVehicles: IVehicle[],
@@ -206,8 +144,7 @@ export interface ILocationDetailsProps {
   fetchPeople(): void;
 }
 
-export interface ISpeciesDetailsProps {
-  id: string,
+export interface ISpeciesDetailsProps extends IDefaultDetailsProps {
   allFilms: IFilm[],
   allLocations: ILocation[],
   allVehicles: IVehicle[],
@@ -218,8 +155,7 @@ export interface ISpeciesDetailsProps {
   fetchPeople(): void;
 }
 
-export interface IVehiclesDetailsProps {
-  id: string,
+export interface IVehiclesDetailsProps extends IDefaultDetailsProps {
   allFilms: IFilm[],
   allLocations: ILocation[],
   allSpecies: ISpecie[],

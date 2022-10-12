@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { fetchSpeciesById } from '../api/ghibliApi';
-import { IFilm, ILocation, IPerson, ISpecie, ISpeciesDetailsProps, IVehicle } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from '../interfaces/endpoints';
+import { ISpeciesDetailsProps } from '../interfaces/propsComponents';
 import { IRootState } from '../interfaces/state';
 import { getFilms } from '../redux/actions/filmsAction';
 import { getLocations } from '../redux/actions/locationsAction';
 import { getPeople } from '../redux/actions/peopleAction';
 import { getVehicles } from '../redux/actions/vehiclesAction';
 import styles from '../styles/Details.module.css';
-import { Loading } from './Loading';
+import { Loading } from "./Loading";
 
 function SpeciesDetails({id, allFilms, fetchFilm, fetchLocations, fetchVehicles, fetchPeople, allLocations, allPeople, allVehicles}: ISpeciesDetailsProps) {
   const [specie, setSpecie] = useState<ISpecie>({} as ISpecie);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from '../interfaces/propsComponents';
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from '../interfaces/endpoints';
 
 export async function fetchFilms() {
   return axios.get('https://ghibliapi.herokuapp.com/films')

@@ -48,7 +48,7 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
     filteringFilms()
   }
   return (
-    <div data-cy="filters">
+    <div data-cy="filters" className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
         <input
@@ -145,13 +145,14 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
             onChange={(e) => setMaxYear(e.target.value)}
           />
         </div>
-        <button
-          data-cy="submit-filters"
-          type="button"
-          onClick={handleSendFilters}
-        >
-          SEARCH
-        </button>
+          <button
+            data-cy="submit-filters"
+            type="button"
+            className={styles.buttonSubmit}
+            onClick={handleSendFilters}
+          >
+            SEARCH
+          </button>
       </form>
     </div>
   );

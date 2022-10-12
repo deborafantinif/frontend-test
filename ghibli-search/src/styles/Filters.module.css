@@ -1,3 +1,7 @@
+.filter {
+  position: relative;
+}
+
 .backgroundFilters {
   position: fixed;
   background-color: black;
@@ -12,14 +16,14 @@
 .filtersForm {
   background-color: var(--yellow-100);
   width: 550px;
-  margin: auto;
-  padding: 20px 5px;
+  margin: 5px auto;
+  padding: 20px 0;
   border-radius: 5px;
-  position: fixed;
+  position: absolute;
   bottom: 10;
   left:0;
   right:0;
-  top: 10;
+  top: 0;
   z-index: 4;
 }
 
@@ -46,10 +50,6 @@
   border: none;
 }
 
-.filtersForm button {
-  margin: auto;
-}
-
 .filtersInputNumber {
   margin: auto;
   display: flex;
@@ -65,11 +65,6 @@
   justify-content: space-around;
 }
 
-.filtersSelect label {
-  width: 214px;
-  padding:0;
-}
-
 .filtersSelect select {
   width: 250px;
   background-color: var(--yellow-200);
@@ -81,4 +76,32 @@
   padding: 10px;
   margin: 10px 0;
   transition: box-shadow var(300ms);
+}
+
+.buttonSubmit {
+  position: absolute;
+  right: -180px;
+  width: 150px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .filtersForm {
+    width: 300px;
+  }
+  .filtersForm input {
+    width: 90%;
+  }
+  .filtersSelect {
+    width: 100%;
+    margin: auto;
+  }
+  .filtersSelect label {
+    font-size: 10px;
+  }
+  .filtersSelect select {
+    width: 100px;
+  }
+  .buttonSubmit {
+    right: -60px;
+  }
 }

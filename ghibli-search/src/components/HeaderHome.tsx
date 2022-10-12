@@ -1,4 +1,4 @@
-import { Plus } from "phosphor-react";
+import { MagnifyingGlass, Plus } from "phosphor-react";
 import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { AnyAction } from "redux";
@@ -109,7 +109,8 @@ function HeaderHome({
         onChange={(event) => handleInput(event)}
       />
       <button data-cy="header-button-filters" type="button" onClick={() => setIsMoreFiltersSelected(true)}>
-        <Plus size={15} /> FILTERS
+        <span className={styles.filtersLong}><Plus size={15} /> FILTERS</span>
+        <MagnifyingGlass size={18} className={styles.filtersThin}/>
       </button>
       { isMoreFiltersSelected ? handleFilters() : null }
     </header>

@@ -1,21 +1,3 @@
-/* details {
-  margin: 40px;
-} */
-/* summary {
-  writing-mode: vertical-lr;
-  text-align: center;
-  padding: 12px 10px;
-  width: 23px;
-  height: 17px;
-  background-color: var(--primColor);
-  border: 2px solid var(--secoColor);
-  border-radius: var(--cornerRad);
-  color: var(--secoColor);
-  cursor: pointer;
-  user-select: none;
-  outline: none;
-  transition: transform 200ms ease-in-out 0s;
-} */
 .indexUp {
   z-index: 2;
 }
@@ -29,14 +11,16 @@ summary {
   padding-top: 5px;
 }
 
+details {
+  margin-left: 10px;
+}
+
 details summary::-webkit-details-marker {
   display:none;
 }
 summary::before,
 summary::after {
   position: static;
-  /* top: 0;
-  left: 0; */
 }
 summary::before {
   content: "";

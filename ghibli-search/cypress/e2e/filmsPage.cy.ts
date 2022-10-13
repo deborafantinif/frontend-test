@@ -2,7 +2,7 @@
 
 context('Verificação da Página Films e FilmsDetails', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.1.71:5173/', { timeout: 30000 });
+    cy.visit('http://localhost:3000/', { timeout: 30000 });
   })
 
   it('Redireciona para rota /films', () => {
@@ -77,7 +77,7 @@ context('Verificação da Página Films e FilmsDetails', () => {
     cy.get('[data-cy="filters"]').should('exist');
 
     // inserção de filtros
-    cy.get('._filtersForm_hmikk_23 > [type="text"]')
+    cy.get('[data-cy="input-name-filters"]')
     .type('CASTLE');
     cy.get('#producer').select('Isao Takahata');
     cy.get('[data-cy="submit-filters"]').click();

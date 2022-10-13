@@ -1,4 +1,4 @@
-import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from "./propsComponents";
+import { IFilm, ILocation, IPerson, ISpecie, IVehicle } from "./endpoints";
 
 export interface IRootState {
   filmsReducer: {

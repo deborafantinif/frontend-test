@@ -54,6 +54,7 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
         <input
           type="text"
           className={styles.filtersInput}
+          data-cy="input-name-filters"
           name="title"
           placeholder="Search by film name"
           onChange={(e) => setFilmName(e.target.value)}

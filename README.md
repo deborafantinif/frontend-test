@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-execução">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -44,7 +44,7 @@ Você pode visualizar o layout inicial do projeto no figma através [desse link]
 
 ## 🤔 Execução
 
-Você pode utilizar a aplicação por este [link](...).
+Você pode utilizar a aplicação por este [link](https://frontend-test-deborafantinif.vercel.app/films).
 
 **Para inicialização do projeto dentro da máquina, siga os próximos passos**
 

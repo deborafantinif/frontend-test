@@ -44,7 +44,7 @@ Você pode visualizar o layout inicial do projeto no figma através [desse link]
 
 ## 🤔 Execução
 
-Você pode utilizar a aplicação por este [link](https://frontend-test-deborafantinif.vercel.app/films).
+Você pode utilizar a aplicação por este [link](https://ghible-search.vercel.app/).
 
 **Para inicialização do projeto dentro da máquina, siga os próximos passos**
 

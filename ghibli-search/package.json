@@ -8,7 +8,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint .eslintrc.json . --ext .ts --ext .tsx"
+    "lint": "eslint .eslintrc.json . --ext .ts --ext .tsx",
+    "test": "./node_modules/.bin/cypress open"
   },
   "dependencies": {
     "axios": "^1.1.2",
@@ -22,6 +23,7 @@
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
+    "@types/cypress": "^1.1.3",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.24",
@@ -31,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "@vitejs/plugin-react": "^2.1.0",
+    "cypress": "^10.10.0",
     "eslint": "^8.20.0",
     "eslint-plugin-react": "^7.31.8",
     "typescript": "^4.6.4",

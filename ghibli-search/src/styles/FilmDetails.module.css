@@ -1,0 +1,72 @@
+.film {
+  width: 80%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 10px auto;
+  position: relative;
+  background-color: var(--white);
+}
+
+.info {
+  background-color: var(--green-200);
+  border-radius: 5px 5px 0 0;
+  padding: 15px;
+  height: 45%;
+}
+
+.score {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: var(--green-100);
+  border-radius: 5px;
+}
+
+.title h2 {
+  max-width: 230px;
+  display: inline-block;
+}
+
+.title span {
+  display: inline;
+  font-size: 10px;
+  color: var(--blue-700);
+}
+
+.title p {
+  font-size: 10px;
+  color: var(--gray-500);
+}
+
+.description {
+  background-color: var(--white);
+  padding: 30px 15px;
+}
+
+.description p {
+  font-size: 12px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+  margin: auto;
+}
+
+.cards div {
+  width: 220px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 10px 0;
+  position: relative;
+  padding: 20px 10px;
+  background-color: var(--orange-500);
+}

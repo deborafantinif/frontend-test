@@ -1,0 +1,122 @@
+.header {
+  align-items: space-around;
+  display: grid;
+  justify-content:  space-around;
+  grid-template-columns: 50px 3fr 5fr 1fr;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.input {
+  background-color: var(--yellow-200);
+  border: 1px solid var(--brown-300);
+  border-radius: 5px;
+  color: var(--brown-300);
+  height: 50px;
+  padding: 10px;
+  transition: box-shadow var(300ms);
+  width: 500px;
+}
+
+.input::placeholder {
+  color: var(--brown-300);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0.2rem 0.8rem 1.6rem var(--yellow-200);
+  border: none;
+}
+
+.header button {
+  appearance: none;
+  background-color: var(--brown-300);
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 5px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: var(--gray-500);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  height: 50px;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 150px;
+  word-wrap: break-word;
+  margin: 0 10px;
+}
+
+.header button:hover {
+  background-color: var(--yellow-500);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.header button:disabled {
+  background-color: var(--yellow-500);
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.header button:active {
+  background-color: var(--yellow-300);
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.header button:focus {
+  outline: 1px transparent;
+}
+
+.header button:before {
+  display: none;
+}
+
+.header button:-webkit-details-marker {
+  display: none;
+}
+
+.filtersThin {
+  display: none;
+}
+
+@media only screen and (max-width: 970px) {
+  .header {
+    grid-template-columns: 50px 3fr 4fr 1fr;
+  }
+  .input {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .header {
+    grid-template-columns: 1fr 3fr 1fr;
+    text-align: center;
+  }
+  .header button {
+    width: 50px;
+  }
+  .input {
+    display: none;
+  }
+  .filtersThin {
+    display: block;
+  }
+  .filtersLong {
+    display: none;
+  }
+}

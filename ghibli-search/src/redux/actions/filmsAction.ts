@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { fetchFilms } from "../../api/ghibliApi";
-import { FAILED_REQUEST, REQUEST_FILMS, SAVE_FILMS } from "./actionTypes";
+import { IFilm } from "../../interfaces/endpoints";
+import { FAILED_REQUEST, GET_FILMS_BY_FILTERS, GET_FILMS_BY_TITLE, HANDLE_MORE_FILTERS, REQUEST_FILMS, SAVE_FILMS } from "./actionTypes";
 
 const requestFilms = () => ({
   type: REQUEST_FILMS,
@@ -28,3 +29,18 @@ export const getFilms = () => async (dispatch: Dispatch) => {
       dispatch(failedRequest(error.message));
   }
 }
+
+export const getFilmsByTitle = (filteredFilms: IFilm[]) => ({
+  type: GET_FILMS_BY_TITLE,
+  payload: filteredFilms,
+});
+
+export const handleMoreFilters = (isSelected: boolean) => ({
+  type: HANDLE_MORE_FILTERS,
+  payload: isSelected,
+});
+
+export const getFilmsByFilters = (films: IFilm[]) => ({
+  type: GET_FILMS_BY_FILTERS,
+  payload: films,
+});

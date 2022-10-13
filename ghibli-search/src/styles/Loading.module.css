@@ -1,0 +1,28 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+  line-height: 40%;
+}
+
+.loading h3 {
+  padding: 10px;
+  color: var(--brown-300);
+}
+
+.loader {
+  margin: 5px 0;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+  } 

@@ -34,7 +34,7 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
   const classificationsName = allVehicles.map((vehicle) => vehicle.vehicle_class);
   const classificationsUniqName = [ ...new Set(classificationsName)];
   return (
-    <>
+    <div className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
         <input
@@ -72,11 +72,11 @@ function VehiclesFilter({setIsMoreFiltersSelected, allVehicles, fetchFilms, requ
             onChange={(e) => setMinLength(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleSendVehicles}>
+        <button type="button" className={styles.buttonSubmit} onClick={handleSendVehicles}>
           SEARCH
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

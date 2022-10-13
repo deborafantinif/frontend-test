@@ -37,7 +37,7 @@ function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter,
   }
 
   return (
-    <>
+    <div className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
         <input
@@ -58,11 +58,11 @@ function SpeciesFilter({setIsMoreFiltersSelected, fetchFilms, requestWithFilter,
           placeholder="Search by hair color"
           onChange={(e) => setHairColorName(e.target.value)}
         />
-        <button type="button" onClick={handleSendSpecies}>
+        <button type="button" className={styles.buttonSubmit} onClick={handleSendSpecies}>
           SEARCH
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -48,7 +48,7 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
     filteringLocations();
   }
   return (
-    <>
+    <div className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
         <input
@@ -101,11 +101,11 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
             onChange={(e) => setMaxWater(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleSendFilters}>
+        <button type="button" className={styles.buttonSubmit} onClick={handleSendFilters}>
           SEARCH
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

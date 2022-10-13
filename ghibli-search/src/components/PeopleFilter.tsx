@@ -40,7 +40,7 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
     filteringFilms()
   }
   return (
-    <>
+    <div className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
       <input type="text" name="name" className={styles.filtersInput} placeholder='Search by name' onChange={(e) =>setPeopleName(e.target.value)} />
@@ -66,11 +66,11 @@ function PeopleFilter({setIsMoreFiltersSelected, allPeople, fetchFilms, fetchLoc
           ))}
         </select>
       </div>
-      <button type='button' onClick={handleSendFilters}>
+      <button type='button' className={styles.buttonSubmit} onClick={handleSendFilters}>
         SEARCH
       </button>
     </form>
-    </>
+    </div>
   )
 }
 

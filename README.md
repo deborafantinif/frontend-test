@@ -17,7 +17,7 @@
 <br>
 
 <p align="center">
-  <img alt="GhibliSearch" src="#" width="100%">
+  <img alt="GhibliSearch" src="/ghibli-search/public/demo-ghibli-search.gif" width="100%">
 </p>
 
 ## 👩‍💻 Tecnologias

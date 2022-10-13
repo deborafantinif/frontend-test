@@ -1,5 +1,6 @@
 import { List, X } from 'phosphor-react';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../styles/Menu.module.css'
 
 export function Menu() {
@@ -32,21 +33,21 @@ export function Menu() {
             : `${styles.menu} ${styles.indexDown}`
         }
       >
-        <a data-cy="link-films" href="/films">
+        <Link data-cy="link-films" to="/films">
           Films
-        </a>
-        <a data-cy="link-people" href="/people">
+        </Link>
+        <Link data-cy="link-people" to="/people">
           People
-        </a>
-        <a data-cy="link-locations" href="/locations">
+        </Link>
+        <Link data-cy="link-locations" to="/locations">
           Locations
-        </a>
-        <a data-cy="link-species" href="/species">
+        </Link>
+        <Link data-cy="link-species" to="/species">
           Species
-        </a>
-        <a data-cy="link-vehicles" href="/vehicles">
+        </Link>
+        <Link data-cy="link-vehicles" to="/vehicles">
           Vehicles
-        </a>
+        </Link>
       </nav>
     </details>
   );

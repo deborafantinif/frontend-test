@@ -51,12 +51,13 @@ function LocationsFilter({setIsMoreFiltersSelected, allLocations, fetchFilms, re
     <div className={styles.filters}>
       <div className={styles.backgroundFilters}></div>
       <form className={styles.filtersForm}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Search by name"
-          onChange={(e) => setLocationName(e.target.value)}
-        />
+          <input
+            type="text"
+            name="name"
+            className={styles.filtersInput}
+            placeholder="Search by name"
+            onChange={(e) => setLocationName(e.target.value)}
+          />
         <div className={styles.filtersSelect}>
           <label htmlFor="climate">Search by climate:</label>
           <select

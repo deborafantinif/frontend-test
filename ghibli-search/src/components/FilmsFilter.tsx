@@ -145,14 +145,14 @@ function FilmsFilter({setIsMoreFiltersSelected, allFilms, allLocations, fetchLoc
             onChange={(e) => setMaxYear(e.target.value)}
           />
         </div>
-          <button
-            data-cy="submit-filters"
-            type="button"
-            className={styles.buttonSubmit}
-            onClick={handleSendFilters}
-          >
-            SEARCH
-          </button>
+        <button
+          data-cy="submit-filters"
+          type="button"
+          className={styles.buttonSubmit}
+          onClick={handleSendFilters}
+        >
+          SEARCH
+        </button>
       </form>
     </div>
   );
